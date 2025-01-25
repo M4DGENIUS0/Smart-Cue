@@ -12,7 +12,7 @@ final List<ScrollController> _scrollControllers = [
 List<Widget> buildScreens() {
   return [
     ScriptsHome(),
-    AddScript(),
+    // AddScript(),
     Setting(),
   ];
 }
@@ -22,21 +22,30 @@ List<PersistentBottomNavBarItem> navBarItems() {
   return [
     PersistentBottomNavBarItem(
       iconSize: 30,
-      icon: Icon(Icons.home),
-      activeColorPrimary: Colors.yellow,
-      inactiveColorPrimary: Colors.black,
-    ),
-    PersistentBottomNavBarItem(
       icon: Icon(
-        Icons.add,
+        Icons.home,
         color: Colors.black,
       ),
-      iconSize: 30,
       activeColorPrimary: Colors.yellow,
       inactiveColorPrimary: Colors.black,
     ),
+    // PersistentBottomNavBarItem(
+    //   icon: Icon(
+    //     Icons.add,
+    //     color: Colors.black,
+    //   ),
+    //   onPressed: (p0) {
+
+    //   },
+    //   iconSize: 30,
+    //   activeColorPrimary: Colors.yellow,
+    //   inactiveColorPrimary: Colors.black,
+    // ),
     PersistentBottomNavBarItem(
-      icon: Icon(Icons.settings),
+      icon: Icon(
+        Icons.settings,
+        color: Colors.black,
+      ),
       iconSize: 30,
       activeColorPrimary: Colors.yellow,
       inactiveColorPrimary: Colors.black,
