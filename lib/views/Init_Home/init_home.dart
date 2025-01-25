@@ -29,7 +29,12 @@ class _InitHomeState extends State<InitHome> {
             PersistentTabController(initialIndex: currentIndex);
 
         return PersistentTabView(
+          navBarHeight: 70,
           context,
+          decoration: NavBarDecoration(
+              border: Border.all(color: Colors.black, width: 2)),
+          stateManagement: true,
+          backgroundColor: Colors.blue,
           controller: controller,
           screens: buildScreens(),
           items: navBarItems(),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:smartcue/views/views.dart';
@@ -22,22 +21,25 @@ List<Widget> buildScreens() {
 List<PersistentBottomNavBarItem> navBarItems() {
   return [
     PersistentBottomNavBarItem(
+      iconSize: 30,
       icon: Icon(Icons.home),
-      title: "Script",
-      activeColorPrimary: Colors.blue,
-      inactiveColorPrimary: Colors.grey,
+      activeColorPrimary: Colors.yellow,
+      inactiveColorPrimary: Colors.black,
     ),
     PersistentBottomNavBarItem(
-      icon: Icon(Icons.search),
-      title: "Add",
-      activeColorPrimary: Colors.green,
-      inactiveColorPrimary: Colors.grey,
+      icon: Icon(
+        Icons.add,
+        color: Colors.black,
+      ),
+      iconSize: 30,
+      activeColorPrimary: Colors.yellow,
+      inactiveColorPrimary: Colors.black,
     ),
     PersistentBottomNavBarItem(
-      icon: Icon(Icons.person),
-      title: "Setting",
-      activeColorPrimary: Colors.purple,
-      inactiveColorPrimary: Colors.grey,
+      icon: Icon(Icons.settings),
+      iconSize: 30,
+      activeColorPrimary: Colors.yellow,
+      inactiveColorPrimary: Colors.black,
     ),
   ];
 }
