@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../config/component/components.dart';
 import '../views.dart';
 
 class ScriptsHome extends StatefulWidget {
@@ -41,6 +42,7 @@ class _ScriptsHomeState extends State<ScriptsHome> {
                 ),
               )),
         ),
+        body: TabBarComponent(),
       ),
     );
   }
