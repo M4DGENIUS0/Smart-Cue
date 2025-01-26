@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:smartcue/views/views.dart';
 
+import 'views/Add_Script/Bottom_Sheet/bloc/generation_bloc.dart';
 import 'views/Init_Home/Cubit/build_Screen_Cubit.dart';
 
 GetIt getIt = GetIt.instance;
@@ -16,7 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => BuildScreenCubit())],
+      providers: [
+        BlocProvider(create: (context) => BuildScreenCubit()),
+        BlocProvider(
+          create: (context) => GenerationBloc(),
+        )
+      ],
       child: MaterialApp(
         title: 'Smart Cue',
         debugShowCheckedModeBanner: false,

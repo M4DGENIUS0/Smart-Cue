@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/component/components.dart';
 import '../views.dart';
@@ -22,8 +21,7 @@ class _ScriptsHomeState extends State<ScriptsHome> {
             "Smart Cue",
           ),
           centerTitle: true,
-          titleTextStyle: GoogleFonts.getFont('Lexend Giga',
-              color: Colors.black, fontSize: 18),
+          titleTextStyle: TextStyle(color: Colors.black, fontSize: 18),
           // Tab bar Customization
           bottom: PreferredSize(
               preferredSize: const Size.fromHeight(60),

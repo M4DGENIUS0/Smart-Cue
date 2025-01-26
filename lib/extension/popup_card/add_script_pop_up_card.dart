@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:smartcue/views/views.dart';
 
-import 'widget/bottom_Sheet.dart';
+import '../../views/Add_Script/Bottom_Sheet/bottom_Sheet.dart';
 import 'widget/buttons_for_pop_up.dart';
 
-class AddbyPopupCard extends StatelessWidget {
+class AddbyPopupCard extends StatefulWidget {
   const AddbyPopupCard({super.key});
 
+  @override
+  State<AddbyPopupCard> createState() => _AddbyPopupCardState();
+}
+
+class _AddbyPopupCardState extends State<AddbyPopupCard> {
   @override
   Widget build(BuildContext context) {
     void cancel() {
@@ -23,7 +28,6 @@ class AddbyPopupCard extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.of(context).pop();
-              openBottomSheet(context);
             },
             child: ButtonsForPopUp(
               icon_Name: Icons.text_snippet_rounded,
@@ -31,9 +35,17 @@ class AddbyPopupCard extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8), // Added spacing
-          ButtonsForPopUp(
-            icon_Name: Icons.auto_awesome,
-            title: "Generate Script using AI",
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+              if (mounted) {
+                openBottomSheet(context);
+              }
+            },
+            child: ButtonsForPopUp(
+              icon_Name: Icons.auto_awesome,
+              title: "Generate Script using AI",
+            ),
           ),
         ],
       ),

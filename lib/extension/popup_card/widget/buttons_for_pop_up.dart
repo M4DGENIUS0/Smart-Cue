@@ -16,7 +16,6 @@ class ButtonsForPopUp extends StatelessWidget {
           border: Border.all(color: Colors.black)),
       child: Row(
         spacing: 5,
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Flexible(
             child: Icon(
