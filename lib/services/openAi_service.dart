@@ -2,10 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:openai_dart/openai_dart.dart';
 
 class OpenaiService {
-  final Dio _dio =
-      Dio(BaseOptions(baseUrl: 'https://api.openai.com/v1', headers: {
+  final Dio _dio = Dio(BaseOptions(baseUrl: '', headers: {
     'Authorization': '',
-    'Content-Type': 'application/json',
+    'Content-Type': '',
   }));
 
   Future<String> fetchTeleprompt(String prompt) async {
