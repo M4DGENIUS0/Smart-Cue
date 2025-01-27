@@ -4,13 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/bloc/smart_Cue/smart_cue_bloc.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/cubit/scroll_state.dart';
 
+import '../../../../model/script_model.dart';
 import '../../../views.dart';
 import '../Controller/Screen_Scroll_Helper.dart';
 import '../bloc/Playback/playback_bloc.dart';
 import '../widget/widget.dart';
 
 class SmartCueScreen extends StatefulWidget {
-  const SmartCueScreen({super.key});
+  final String content;
+  const SmartCueScreen({super.key, required this.content});
 
   @override
   State<SmartCueScreen> createState() => _SmartCueScreenState();
@@ -66,14 +68,6 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
     _scrollTimer?.cancel();
   }
 
-  final String lorem = """
-    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in classical
-    Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
-    professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words
-    "consectetur", from a Lorem Ipsum passage, and going through the cites of the word in classical
-    literature, discovered the undoubtable source.
-  """;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +83,7 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              context.read<SmartCueBloc>().add(SaveTextEvent());
+              context.read<SmartCueBloc>().add(SaveTextToPDFEvent());
             },
             child: const Text(
               "Save",
@@ -124,7 +118,7 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
                     child: BlocBuilder<PlaybackBloc, PlaybackState>(
                         builder: (context, state) {
                       return Text(
-                        lorem,
+                        widget.content,
                         style: TextStyle(
                           fontSize: state.textSize,
                           color: Colors.green,

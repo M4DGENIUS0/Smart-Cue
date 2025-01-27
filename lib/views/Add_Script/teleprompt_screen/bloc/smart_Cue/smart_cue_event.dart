@@ -7,13 +7,17 @@ abstract class SmartCueEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class EditTextEvent extends SmartCueEvent {
-  final String text;
+class SaveTextEvent extends SmartCueEvent {
+  final String title;
 
-  const EditTextEvent(this.text);
+  final String content;
+
+  const SaveTextEvent({this.title = "", this.content = ""});
 
   @override
-  List<Object?> get props => [text];
+  List<Object?> get props => [title, content];
 }
 
-class SaveTextEvent extends SmartCueEvent {}
+class SaveTextToPDFEvent extends SmartCueEvent {}
+
+class ClearTextEvent extends SmartCueEvent {}

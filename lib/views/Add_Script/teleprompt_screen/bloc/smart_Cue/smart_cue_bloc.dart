@@ -2,24 +2,50 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as p;
+import 'package:uuid/uuid.dart';
+
+import '../../../../../model/script_model.dart';
+import '../../../../../repository/script repo/hive_script_repo.dart';
 part 'smart_cue_event.dart';
 part 'smart_cue_state.dart';
 
 class SmartCueBloc extends Bloc<SmartCueEvent, SmartCueState> {
-  SmartCueBloc() : super(const SmartCueState(text: '')) {
-    on<EditTextEvent>((event, emit) {
-      emit(state.copyWith(text: event.text));
+  final TextEditingController contentController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+
+  final HiveScriptRepository scriptRepository = HiveScriptRepository();
+  SmartCueBloc() : super(const SmartCueState()) {
+    on<SaveTextEvent>((event, emit) async {
+      titleController.text = event.title;
+      contentController.text = event.content;
+      if (contentController.text.isNotEmpty) {
+        final newScript = ScriptModel(
+          id: const Uuid().v4(), // Generate unique ID for each script
+          title: titleController.text,
+          content: contentController.text,
+          isGenerated: false, // Mark as manually created
+          createdAt: DateTime.now(),
+        );
+
+        await scriptRepository
+            .addScript(newScript); // Save script using the repository
+      }
+    });
+    on<ClearTextEvent>((event, emit) {
+      titleController.clear();
+      contentController.clear();
     });
 
-    on<SaveTextEvent>((event, emit) async {
+    on<SaveTextToPDFEvent>((event, emit) async {
       final pdf = p.Document();
       pdf.addPage(
         p.Page(
           build: (p.Context context) => p.Center(
-            child: p.Text(state.text),
+            child: p.Text(state.content),
           ),
         ),
       );
@@ -33,5 +59,11 @@ class SmartCueBloc extends Bloc<SmartCueEvent, SmartCueState> {
         print("Error: $e");
       }
     });
+  }
+  @override
+  Future<void> close() {
+    titleController.dispose();
+    contentController.dispose();
+    return super.close();
   }
 }

@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartcue/extension/popup_card/add_script_pop_up_card.dart';
 
 import '../../../../../views.dart';
+import '../bloc/script_tab_bloc.dart';
 
-class Scripts extends StatelessWidget {
+class Scripts extends StatefulWidget {
   const Scripts({super.key});
+
+  @override
+  State<Scripts> createState() => _ScriptsState();
+}
+
+class _ScriptsState extends State<Scripts> {
+  @override
+  void initState() {
+    context.read<ScriptBloc>().add(LoadScriptsEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +42,47 @@ class Scripts extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 120,
-            mainAxisExtent: 150, // Adjust size as needed
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            childAspectRatio: 1,
-          ),
-          itemCount: 1, // Currently displaying 1 item
-          itemBuilder: (context, index) {
-            return GridForScripts(
-              title: 'Demo',
-            );
+        child: BlocBuilder<ScriptBloc, ScriptState>(
+          builder: (context, state) {
+            if (state is ScriptsLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is ScriptsLoadingErrorState) {
+              return Center(child: Text('Error: ${state.message}'));
+            } else if (state is ScriptsLoadedState) {
+              final scripts = state.scripts;
+              return scripts.isEmpty
+                  ? const Center(child: Text('No scripts found.'))
+                  : GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 120,
+                        mainAxisExtent: 150,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                        childAspectRatio: 1,
+                      ),
+                      itemCount: scripts.length,
+                      itemBuilder: (context, index) {
+                        final script = scripts[index];
+                        print(scripts.length);
+                        return GridForScripts(
+                          title: script.content,
+                          onTap: () {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SmartCueScreen(
+                                    content: script.content,
+                                  ),
+                                ),
+                                (Route<dynamic> route) => false);
+                          },
+                        );
+                      },
+                    );
+            } else {
+              return const Center(child: Text('No scripts available.'));
+            }
           },
         ),
       ),

@@ -1,16 +1,16 @@
 part of 'smart_cue_bloc.dart';
 
 class SmartCueState extends Equatable {
-  final String text;
+  final String title;
+  final String content;
 
-  const SmartCueState({required this.text});
+  const SmartCueState({this.title = "", this.content = ""});
 
-  SmartCueState copyWith({String? text}) {
+  SmartCueState copyWith({String? title, String? content}) {
     return SmartCueState(
-      text: text ?? this.text,
-    );
+        title: title ?? this.title, content: content ?? this.content);
   }
 
   @override
-  List<Object?> get props => [text];
+  List<Object?> get props => [title, content];
 }

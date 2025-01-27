@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+
+import 'package:hive_flutter/adapters.dart';
+import 'package:smartcue/repository/script%20repo/hive_script_repo.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/bloc/Playback/playback_bloc.dart';
 import 'package:smartcue/views/views.dart';
 
+import 'services/hive_services.dart';
 import 'views/Add_Script/Bottom_Sheet/bloc/generation_bloc.dart';
 import 'views/Add_Script/teleprompt_screen/bloc/smart_Cue/smart_cue_bloc.dart';
 import 'views/Add_Script/teleprompt_screen/cubit/scroll_state.dart';
+import 'views/Home/Tab/Screens/Scripts_tab/bloc/script_tab_bloc.dart';
 import 'views/Init_Home/Cubit/build_Screen_Cubit.dart';
 
 GetIt getIt = GetIt.instance;
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Hive
+  await HiveService.initHive();
   runApp(const MyApp());
 }
 
@@ -33,6 +42,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ScrollCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ScriptBloc(),
         )
       ],
       child: MaterialApp(

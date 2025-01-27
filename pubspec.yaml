@@ -28,6 +28,8 @@ dependencies:
   path_provider: ^2.1.5
   pdf: ^3.11.2
   teleprompter: ^0.1.1
+  uuid: ^4.5.1
+  awesome_dialog: ^3.2.1
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +37,8 @@ dev_dependencies:
 
  
   flutter_lints: ^5.0.0
+  build_runner: ^2.4.14
+  hive_generator: ^2.0.1
 
 
 flutter:
