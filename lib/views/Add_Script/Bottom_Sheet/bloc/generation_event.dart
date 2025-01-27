@@ -26,4 +26,4 @@ class UpdateLanguage extends GenerationEvent {
   UpdateLanguage(this.language);
 }
 
-class Display extends GenerationEvent {}
+class PostRequesttoAPI extends GenerationEvent {}

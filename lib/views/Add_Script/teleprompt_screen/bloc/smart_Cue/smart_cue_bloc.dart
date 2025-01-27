@@ -24,15 +24,14 @@ class SmartCueBloc extends Bloc<SmartCueEvent, SmartCueState> {
       contentController.text = event.content;
       if (contentController.text.isNotEmpty) {
         final newScript = ScriptModel(
-          id: const Uuid().v4(), // Generate unique ID for each script
+          id: const Uuid().v4(),
           title: titleController.text,
           content: contentController.text,
-          isGenerated: false, // Mark as manually created
+          isGenerated: false,
           createdAt: DateTime.now(),
         );
 
-        await scriptRepository
-            .addScript(newScript); // Save script using the repository
+        await scriptRepository.addScript(newScript);
       }
     });
     on<ClearTextEvent>((event, emit) {
