@@ -4,8 +4,7 @@ import 'package:openai_dart/openai_dart.dart';
 class OpenaiService {
   final Dio _dio =
       Dio(BaseOptions(baseUrl: 'https://api.openai.com/v1', headers: {
-    'Authorization':
-        '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',
+    'Authorization': '',
     'Content-Type': 'application/json',
   }));
 
