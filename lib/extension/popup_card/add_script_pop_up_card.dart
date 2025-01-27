@@ -27,12 +27,11 @@ class _AddbyPopupCardState extends State<AddbyPopupCard> {
         children: [
           InkWell(
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SmartCueScreen(),
+                    builder: (context) => Create_Edit_Screen(),
                   ));
-              // Navigator.of(context).pop();
             },
             child: ButtonsForPopUp(
               icon_Name: Icons.text_snippet_rounded,

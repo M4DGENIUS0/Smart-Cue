@@ -9,4 +9,4 @@ export 'Home/Tab/Screens/Scripts_tab/Screens/Scripts.dart';
 export 'Home/Tab/Screens/Import_tab/Screens/Import_Tab.dart';
 export 'Home/Tab/Screens/folder_tab/Screens/folder.dart';
 export 'Add_Script/teleprompt_screen/screen/Teleprompt_screen.dart';
-export 'Add_Script/teleprompt_screen/screen/edit_button_Screen.dart';
+export 'Add_Script/teleprompt_screen/screen/Create_edit_Screen.dart';

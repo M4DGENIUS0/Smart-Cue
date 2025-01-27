@@ -101,7 +101,7 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Edit_Screen(),
+                    builder: (context) => Create_Edit_Screen(),
                   ));
             },
             child: const Text(
