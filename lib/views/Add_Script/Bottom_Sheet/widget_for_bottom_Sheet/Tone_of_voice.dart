@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartcue/views/Add_Script/Bottom_Sheet/bloc/generation_bloc.dart';
 
-import '../../../../config/component/generate_by-ai-components.dart/BottomSheet_Components.dart';
+import '../../../../config/component/generate_by_ai_components/BottomSheet_Components.dart';
+import '../bloc/generation_bloc.dart';
 
-class Languages extends StatelessWidget {
-  const Languages({super.key});
+class ToneOfVoice extends StatelessWidget {
+  const ToneOfVoice({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class Languages extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Languages",
+          "Tone of Voice",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
@@ -25,13 +25,13 @@ class Languages extends StatelessWidget {
               child: Row(
                 spacing: 5,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: Language_Option.map((option) {
-                  final isSelected = state.language == option;
+                children: Tone_of_Voice_Option.map((option) {
+                  final isSelected = state.toneOfVoice == option;
                   return GestureDetector(
                     onTap: () {
                       context
                           .read<GenerationBloc>()
-                          .add(UpdateLanguage(option));
+                          .add(UpdateToneOfVoice(option));
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(

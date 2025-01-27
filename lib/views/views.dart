@@ -1,7 +1,6 @@
 export 'Init_Home/init_home.dart';
 export 'Home/Scripts_Home.dart';
 export 'Setting/Screen/setting.dart';
-export 'Add_Script/Add_Script.dart';
 export 'Home/Tab/Tab.dart';
 export 'Home/Tab/Screens/Scripts_tab/widget/Grid_for_scripts.dart';
 export 'Home/Tab/Screens/Import_tab/widget/Grid_for_import_tab.dart';
@@ -9,3 +8,5 @@ export 'Home/Tab/Screens/folder_tab/widget/Grid_for_folder.dart';
 export 'Home/Tab/Screens/Scripts_tab/Screens/Scripts.dart';
 export 'Home/Tab/Screens/Import_tab/Screens/Import_Tab.dart';
 export 'Home/Tab/Screens/folder_tab/Screens/folder.dart';
+export 'Add_Script/teleprompt_screen/screen/Teleprompt_screen.dart';
+export 'Add_Script/teleprompt_screen/screen/edit_button_Screen.dart';

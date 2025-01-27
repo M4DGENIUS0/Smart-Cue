@@ -24,6 +24,10 @@ dependencies:
   persistent_bottom_nav_bar: ^6.2.1
   get_it: ^8.0.3
   drop_down_list: ^2.0.0
+  auto_scroll_text: ^0.0.7
+  path_provider: ^2.1.5
+  pdf: ^3.11.2
+  teleprompter: ^0.1.1
 
 dev_dependencies:
   flutter_test:

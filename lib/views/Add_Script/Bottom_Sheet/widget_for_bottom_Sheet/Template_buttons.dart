@@ -1,37 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../config/component/generate_by-ai-components.dart/BottomSheet_Components.dart';
+import '../../../../config/component/generate_by_ai_components/BottomSheet_Components.dart';
 import '../bloc/generation_bloc.dart';
 
-class ToneOfVoice extends StatelessWidget {
-  const ToneOfVoice({super.key});
+class TemplateButtons extends StatelessWidget {
+  const TemplateButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Tone of Voice",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        BlocBuilder<GenerationBloc, GenerationState>(
-          builder: (context, state) {
-            return SingleChildScrollView(
+    return BlocBuilder<GenerationBloc, GenerationState>(
+      builder: (context, state) {
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            "Template",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
               child: Row(
                 spacing: 5,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: Tone_of_Voice_Option.map((option) {
-                  final isSelected = state.toneOfVoice == option;
+                children: Template_Option.map((option) {
+                  final isSelected = state.selectedTemplate == option;
                   return GestureDetector(
                     onTap: () {
                       context
                           .read<GenerationBloc>()
-                          .add(UpdateToneOfVoice(option));
+                          .add(UpdateTemplate(option));
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -51,11 +48,9 @@ class ToneOfVoice extends StatelessWidget {
                     ),
                   );
                 }).toList(),
-              ),
-            );
-          },
-        ),
-      ],
+              )),
+        ]);
+      },
     );
   }
 }

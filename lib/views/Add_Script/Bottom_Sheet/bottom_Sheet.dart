@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartcue/views/Add_Script/Bottom_Sheet/widget_for_bottom-Sheet/Languages.dart';
-
-import 'widget_for_bottom-Sheet/Description_box.dart';
-import 'widget_for_bottom-Sheet/Template_buttons.dart';
-import 'widget_for_bottom-Sheet/Tone_of_voice.dart';
-import 'widget_for_bottom-Sheet/button_for_generation.dart';
+import 'widget_for_bottom_Sheet/widget.dart';
 
 void openBottomSheet(
   BuildContext context,
