@@ -9,7 +9,7 @@ class OpenaiService {
 
   Future<String> fetchTeleprompt(String prompt) async {
     try {
-      final response = await _dio.post('/completions', data: {
+      final response = await _dio.post('', data: {
         'model': 'text-davinci-003',
         'prompt': prompt,
         'max_tokens': 1500, // Adjust token limit as needed
