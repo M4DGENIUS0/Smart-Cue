@@ -31,13 +31,15 @@ class _InitHomeState extends State<InitHome> {
         return PersistentTabView(
           navBarHeight: 70,
           context,
-          // decoration: NavBarDecoration(
-          //     border: Border.all(color: Colors.black, width: 2)),
           stateManagement: true,
-          backgroundColor: Colors.blue,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor ??
+              Colors.transparent,
           controller: controller,
+          hideNavigationBarWhenKeyboardAppears: true,
+          isVisible: true,
+          confineToSafeArea: true,
           screens: buildScreens(),
-          items: navBarItems(),
+          items: navBarItems(context),
           navBarStyle: NavBarStyle.style10,
           onItemSelected: (index) {
             context.read<BuildScreenCubit>().changeTab(index);

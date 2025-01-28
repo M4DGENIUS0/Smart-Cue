@@ -25,12 +25,10 @@ class _ScriptsState extends State<Scripts> {
       floatingActionButton: GestureDetector(
         // backgroundColor: Colors.yellowAccent,
         onTap: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) => AddbyPopupCard());
+          PopupDialogBox().showAwesomeDialog(context);
         },
         child: Material(
-          color: Colors.amberAccent,
+          color: Theme.of(context).colorScheme.primary,
           elevation: 2,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
@@ -51,12 +49,15 @@ class _ScriptsState extends State<Scripts> {
             } else if (state is ScriptsLoadedState) {
               final scripts = state.scripts;
               return scripts.isEmpty
-                  ? const Center(child: Text('No scripts found.'))
+                  ? const Center(
+                      child: Text(
+                      'No scripts found.',
+                    ))
                   : GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 120,
-                        mainAxisExtent: 150,
+                        maxCrossAxisExtent: 140,
+                        mainAxisExtent: 170,
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
                         childAspectRatio: 1,
@@ -64,14 +65,15 @@ class _ScriptsState extends State<Scripts> {
                       itemCount: scripts.length,
                       itemBuilder: (context, index) {
                         final script = scripts[index];
-                        print(scripts.length);
                         return GridForScripts(
-                          title: script.content,
+                          title: script.title,
+                          content: script.content,
                           onTap: () {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => SmartCueScreen(
+                                    title: script.title,
                                     content: script.content,
                                   ),
                                 ),

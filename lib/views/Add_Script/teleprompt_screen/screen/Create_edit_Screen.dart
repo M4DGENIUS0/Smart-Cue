@@ -18,24 +18,17 @@ class Create_Edit_Screen extends StatefulWidget {
 
 class _Create_Edit_ScreenState extends State<Create_Edit_Screen> {
   @override
-  // void dispose() {
-  //   context.read<SmartCueBloc>().close();
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[900],
         leading: InkWell(
             onTap: () {
-              // Add your navigation logic here
               Navigator.of(context).pop();
             },
             child: Icon(
               Icons.close,
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onPrimary,
             )),
         actions: [
           TextButton(
@@ -65,7 +58,7 @@ class _Create_Edit_ScreenState extends State<Create_Edit_Screen> {
               child: Icon(
                 Icons.done,
                 size: 25,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               )),
         ],
       ),
@@ -76,7 +69,9 @@ class _Create_Edit_ScreenState extends State<Create_Edit_Screen> {
               builder: (context, state) {
                 return TextField(
                   controller: context.read<SmartCueBloc>().contentController,
-                  style: TextStyle(fontSize: state.textSize),
+                  style: TextStyle(
+                      fontSize: state.textSize,
+                      color: Theme.of(context).colorScheme.onPrimary),
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(border: InputBorder.none),
                   maxLines: 9999,

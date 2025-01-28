@@ -11,7 +11,7 @@ class BottomTextSizeForEditScreen extends StatelessWidget {
     return Container(
       height: 100,
       width: MediaQuery.of(context).size.width,
-      color: Colors.grey[900],
+      color: Theme.of(context).colorScheme.onSecondary,
       child: BlocBuilder<PlaybackBloc, PlaybackState>(
         builder: (context, state) {
           final bloc = context.read<PlaybackBloc>();
@@ -21,10 +21,10 @@ class BottomTextSizeForEditScreen extends StatelessWidget {
               SizedBox(width: 10),
               Icon(
                 Icons.text_fields_outlined,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               Slider(
-                activeColor: Colors.amber[800],
+                activeColor: Theme.of(context).colorScheme.primary,
                 value: state.textSize,
                 min: 8.0,
                 max: 52.0,
@@ -35,7 +35,7 @@ class BottomTextSizeForEditScreen extends StatelessWidget {
               Container(
                 height: 40,
                 decoration: BoxDecoration(
-                    color: Colors.grey[600],
+                    color: Colors.grey[500],
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,10 +48,10 @@ class BottomTextSizeForEditScreen extends StatelessWidget {
                         },
                         icon: Icon(
                           Icons.text_decrease,
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.onSurface,
                         )),
                     VerticalDivider(
-                      color: Colors.grey,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                     IconButton(
                         onPressed: () {
@@ -61,7 +61,7 @@ class BottomTextSizeForEditScreen extends StatelessWidget {
                         },
                         icon: Icon(
                           Icons.text_increase,
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.onSurface,
                         )),
                   ],
                 ),

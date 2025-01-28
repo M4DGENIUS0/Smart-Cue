@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:smartcue/config/demo/demo.dart';
 import 'package:smartcue/model/script_model.dart';
 
 import '../../services/hive_services.dart';
@@ -36,6 +37,21 @@ class HiveScriptRepository implements HiveRepository {
   Future<void> updateScript(String id, ScriptModel UpdateScript) async {
     if (_script.containsKey(id)) {
       await _script.put(id, UpdateScript);
+    }
+  }
+
+  @override
+  Future<void> initializeDemoScript() async {
+    if (_script.isEmpty) {
+      final demoScript = ScriptModel(
+        id: 'Demo Script',
+        title: 'Demo Script',
+        content: demo_script,
+        createdAt: DateTime.now(),
+        isGenerated: false,
+      );
+      await _script.put(demoScript.id, demoScript);
+      _scriptsController.add(_script.values.toList()); // Update stream
     }
   }
 }

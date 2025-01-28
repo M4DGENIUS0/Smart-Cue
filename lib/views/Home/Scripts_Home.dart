@@ -21,7 +21,8 @@ class _ScriptsHomeState extends State<ScriptsHome> {
             "Smart Cue",
           ),
           centerTitle: true,
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 18),
+          titleTextStyle: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary, fontSize: 18),
           // Tab bar Customization
           bottom: PreferredSize(
               preferredSize: const Size.fromHeight(60),
@@ -33,9 +34,11 @@ class _ScriptsHomeState extends State<ScriptsHome> {
                     horizontal: 20,
                   ),
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1),
+                      border: Border.all(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          width: 1),
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.white),
+                      color: Theme.of(context).colorScheme.onSecondary),
                   child: Tabs(),
                 ),
               )),

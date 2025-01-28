@@ -12,43 +12,36 @@ final List<ScrollController> _scrollControllers = [
 List<Widget> buildScreens() {
   return [
     ScriptsHome(),
-    // AddScript(),
     Setting(),
   ];
 }
 
 // Nav Bar Components
-List<PersistentBottomNavBarItem> navBarItems() {
+List<PersistentBottomNavBarItem> navBarItems(BuildContext context) {
   return [
     PersistentBottomNavBarItem(
       iconSize: 30,
       icon: Icon(
         Icons.home,
-        color: Colors.black,
+        color: Theme.of(context).primaryColorDark,
       ),
-      activeColorPrimary: Colors.yellow,
-      inactiveColorPrimary: Colors.black,
+      inactiveIcon: Icon(
+        Icons.home,
+        color: Theme.of(context).colorScheme.onPrimary,
+      ),
+      activeColorPrimary: Theme.of(context).colorScheme.primary,
     ),
-    // PersistentBottomNavBarItem(
-    //   icon: Icon(
-    //     Icons.add,
-    //     color: Colors.black,
-    //   ),
-    //   onPressed: (p0) {
-
-    //   },
-    //   iconSize: 30,
-    //   activeColorPrimary: Colors.yellow,
-    //   inactiveColorPrimary: Colors.black,
-    // ),
     PersistentBottomNavBarItem(
       icon: Icon(
         Icons.settings,
-        color: Colors.black,
+        color: Theme.of(context).primaryColorDark,
       ),
       iconSize: 30,
-      activeColorPrimary: Colors.yellow,
-      inactiveColorPrimary: Colors.black,
+      activeColorPrimary: Theme.of(context).colorScheme.primary,
+      inactiveIcon: Icon(
+        Icons.settings,
+        color: Theme.of(context).colorScheme.onPrimary,
+      ),
     ),
   ];
 }

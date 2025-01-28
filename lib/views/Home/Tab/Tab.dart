@@ -11,11 +11,12 @@ class Tabs extends StatelessWidget {
           indicatorSize: TabBarIndicatorSize.tab,
           dividerColor: Colors.transparent,
           indicator: BoxDecoration(
-              color: Colors.yellow,
-              border: Border.all(color: Colors.black, width: 1),
+              color: Theme.of(context).colorScheme.primary,
+              border: Border.all(
+                  color: Theme.of(context).colorScheme.onPrimary, width: 1),
               borderRadius: BorderRadius.circular(10)),
           labelColor: Colors.black,
-          unselectedLabelColor: Colors.black,
+          unselectedLabelColor: Theme.of(context).colorScheme.onPrimary,
           tabs: [
             Tab(
               child: Center(

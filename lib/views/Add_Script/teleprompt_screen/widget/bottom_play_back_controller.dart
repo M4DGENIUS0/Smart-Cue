@@ -11,7 +11,7 @@ class BottomPlayBackController extends StatelessWidget {
     return Container(
       height: 40,
       width: MediaQuery.of(context).size.width,
-      color: Colors.grey[700],
+      color: Theme.of(context).colorScheme.onSecondary,
       child: BlocBuilder<PlaybackBloc, PlaybackState>(
         builder: (context, state) {
           final bloc = context.read<PlaybackBloc>();
@@ -21,10 +21,10 @@ class BottomPlayBackController extends StatelessWidget {
               SizedBox(width: 10),
               Icon(
                 Icons.av_timer_rounded,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               Slider(
-                activeColor: Colors.amber[800],
+                activeColor: Theme.of(context).colorScheme.primary,
                 value: state.scrollSpeed,
                 min: 2.0,
                 max: 100.0,

@@ -4,15 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/bloc/smart_Cue/smart_cue_bloc.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/cubit/scroll_state.dart';
 
-import '../../../../model/script_model.dart';
 import '../../../views.dart';
 import '../Controller/Screen_Scroll_Helper.dart';
 import '../bloc/Playback/playback_bloc.dart';
 import '../widget/widget.dart';
 
 class SmartCueScreen extends StatefulWidget {
+  final String title;
+
   final String content;
-  const SmartCueScreen({super.key, required this.content});
+  const SmartCueScreen({super.key, required this.content, required this.title});
 
   @override
   State<SmartCueScreen> createState() => _SmartCueScreenState();
@@ -33,14 +34,13 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
   @override
   void dispose() {
     scrollHelper.dispose();
-    _scrollTimer?.cancel(); // Cancel any ongoing timer
+    _scrollTimer?.cancel();
     _scrollController.dispose();
 
     super.dispose();
   }
 
   void startScrolling() {
-    // Cancel any previous timer before starting a new one
     _scrollTimer?.cancel();
 
     if (_scrollController.hasClients) {
@@ -51,20 +51,18 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
           double maxScrollExtent = _scrollController.position.maxScrollExtent;
 
           if (currentOffset < maxScrollExtent) {
-            _scrollController
-                .jumpTo(currentOffset + 2); // Adjust speed as needed
+            _scrollController.jumpTo(currentOffset + 2);
           } else {
-            _scrollTimer?.cancel(); // Stop scrolling when at the end
+            _scrollTimer?.cancel();
           }
         } else {
-          _scrollTimer?.cancel(); // Stop scrolling if the user stops it
+          _scrollTimer?.cancel();
         }
       });
     }
   }
 
   void stopScrolling() {
-    // Cancel the timer to stop scrolling
     _scrollTimer?.cancel();
   }
 
@@ -72,12 +70,11 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[900],
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: const Icon(
+          child: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
         ),
         actions: [
@@ -85,9 +82,9 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
             onPressed: () {
               context.read<SmartCueBloc>().add(SaveTextToPDFEvent());
             },
-            child: const Text(
+            child: Text(
               "Save",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
           TextButton(
@@ -98,13 +95,18 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
                     builder: (context) => Create_Edit_Screen(),
                   ));
             },
-            child: const Text(
+            child: Text(
               "Edit",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
         ],
-        title: const Text("Demo"),
+        title: Text(
+          widget.title,
+        ),
+        titleTextStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
       ),
       body: BlocBuilder<ScrollCubit, ScrollState>(
         builder: (context, state) {
@@ -121,7 +123,7 @@ class _SmartCueScreenState extends State<SmartCueScreen> {
                         widget.content,
                         style: TextStyle(
                           fontSize: state.textSize,
-                          color: Colors.green,
+                          color: Theme.of(context).colorScheme.onPrimary,
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.justify,

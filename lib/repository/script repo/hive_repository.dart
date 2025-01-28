@@ -6,4 +6,5 @@ abstract class HiveRepository {
   Future<void> deleteScript(String id);
   List<ScriptModel> getAllScript();
   ScriptModel? getScriptbyID(String id);
+  Future<void> initializeDemoScript();
 }

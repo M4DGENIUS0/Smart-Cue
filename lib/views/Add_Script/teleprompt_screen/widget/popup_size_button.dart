@@ -15,18 +15,19 @@ class PopupSizeButton extends StatelessWidget {
 
         return PopupMenuButton<double>(
           constraints: BoxConstraints(maxHeight: 300),
-          color: Colors.grey[700],
+          color: Theme.of(context).colorScheme.onSecondary,
           icon: const Icon(Icons.format_size_rounded),
           onSelected: (size) {
             bloc.add(ChangeTextSizeEvent(size));
           },
           itemBuilder: (context) {
             return [
-              const PopupMenuItem<double>(
+              PopupMenuItem<double>(
                 enabled: false,
                 child: Text(
                   'Adjust Text Size',
-                  style: TextStyle(color: Colors.white),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
                 ),
               ),
               // Generate sizes options from the list
@@ -36,7 +37,7 @@ class PopupSizeButton extends StatelessWidget {
                   child: Text(
                     '${size.toInt()}',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
                 ),

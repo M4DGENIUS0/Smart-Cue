@@ -18,14 +18,10 @@ class PlayPauseButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          onPressed: () {
-            // context.read<ScrollCubit>().setUserScrolling(false);
-            // scrollHelper.stopScrolling();
-            // print("Scroll stop");
-          },
+          onPressed: () {},
           icon: Icon(
             Icons.skip_previous_rounded,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
         ),
         BlocBuilder<PlaybackBloc, PlaybackState>(
@@ -49,7 +45,7 @@ class PlayPauseButton extends StatelessWidget {
                 context.read<ScrollCubit>().state.isUserScrolling
                     ? Icons.pause
                     : Icons.play_arrow_rounded,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             );
           },
@@ -58,7 +54,7 @@ class PlayPauseButton extends StatelessWidget {
           onPressed: () {},
           icon: Icon(
             Icons.skip_next_rounded,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
         ),
       ],

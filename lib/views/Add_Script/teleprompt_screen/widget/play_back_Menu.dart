@@ -15,7 +15,7 @@ class PlayBackMenu extends StatelessWidget {
     return Container(
       height: 60,
       width: MediaQuery.of(context).size.width,
-      color: Colors.grey[900],
+      color: Theme.of(context).appBarTheme.backgroundColor,
       child: Row(
         spacing: 5,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -23,7 +23,7 @@ class PlayBackMenu extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.settings),
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
           PlayPauseButton(
             scrollHelper: scrollHelper,
@@ -31,7 +31,7 @@ class PlayBackMenu extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.access_time_rounded),
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
           PopupSizeButton()
         ],

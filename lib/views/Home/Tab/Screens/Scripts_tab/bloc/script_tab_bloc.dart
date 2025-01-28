@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../../../model/script_model.dart';
 import '../../../../../../repository/script repo/hive_script_repo.dart';
-import '../../../../../../services/hive_services.dart';
 
 part 'script_tab_event.dart';
 part 'script_tab_state.dart';
@@ -25,7 +24,8 @@ class ScriptBloc extends Bloc<ScriptEvent, ScriptState> {
       LoadScriptsEvent event, Emitter<ScriptState> emit) async {
     emit(ScriptsLoadingState());
     try {
-      // Get initial scripts list and emit
+      await scriptRepository.initializeDemoScript();
+      // Get initial scripts list
       final scripts = scriptRepository.getAllScript();
       _scriptsController.add(scripts);
       emit(ScriptsLoadedState(scripts));
