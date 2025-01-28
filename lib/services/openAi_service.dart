@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:openai_dart/openai_dart.dart';
 
 class OpenaiService {
   final Dio _dio = Dio(BaseOptions(baseUrl: '', headers: {

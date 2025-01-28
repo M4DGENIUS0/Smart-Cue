@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartcue/views/Add_Script/Bottom_Sheet/bloc/generation_bloc.dart';
 
-import '../../../../prompt/script_generation.dart';
-
 class ButtonForGeneration extends StatelessWidget {
   const ButtonForGeneration({super.key});
 

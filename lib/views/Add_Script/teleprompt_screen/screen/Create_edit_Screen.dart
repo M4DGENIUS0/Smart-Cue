@@ -6,7 +6,6 @@ import 'package:smartcue/views/Add_Script/teleprompt_screen/widget/widget.dart';
 import 'package:smartcue/views/views.dart';
 
 import '../../../../extension/dialog_box/custom_dialog_box.dart';
-import '../../../../repository/script repo/hive_script_repo.dart';
 import '../bloc/Playback/playback_bloc.dart';
 
 class Create_Edit_Screen extends StatefulWidget {

@@ -1,7 +1,6 @@
+import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-
 import '../../config/component/components.dart';
 import 'Cubit/build_Screen_Cubit.dart';
 
@@ -13,39 +12,63 @@ class InitHome extends StatefulWidget {
 }
 
 class _InitHomeState extends State<InitHome> {
-  late PersistentTabController _controller;
   @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: 1);
   }
 
   @override
   Widget build(BuildContext context) {
-    _controller = PersistentTabController(initialIndex: 0);
-    return BlocBuilder<BuildScreenCubit, int>(
-      builder: (context, currentIndex) {
-        PersistentTabController controller =
-            PersistentTabController(initialIndex: currentIndex);
+    return Scaffold(
+      body: BlocBuilder<BuildScreenCubit, int>(
+        builder: (context, currentIndex) {
+          return buildScreens()[currentIndex];
+        },
+      ),
+      bottomNavigationBar: BlocBuilder<BuildScreenCubit, int>(
+        builder: (context, currentIndex) {
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FlashyTabBar(
+                selectedIndex: currentIndex,
+                onItemSelected: (index) {
+                  context.read<BuildScreenCubit>().changeTab(index);
+                },
+                items: [
+                  /// Home
+                  FlashyTabBarItem(
+                    icon: Icon(
+                      Icons.home,
+                      size: 20,
+                    ),
+                    title: Text(
+                      "Home",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    activeColor: Theme.of(context).colorScheme.primary,
+                  ),
 
-        return PersistentTabView(
-          navBarHeight: 70,
-          context,
-          stateManagement: true,
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor ??
-              Colors.transparent,
-          controller: controller,
-          hideNavigationBarWhenKeyboardAppears: true,
-          isVisible: true,
-          confineToSafeArea: true,
-          screens: buildScreens(),
-          items: navBarItems(context),
-          navBarStyle: NavBarStyle.style10,
-          onItemSelected: (index) {
-            context.read<BuildScreenCubit>().changeTab(index);
-          },
-        );
-      },
+                  /// Settings
+                  FlashyTabBarItem(
+                    icon: Icon(
+                      Icons.settings,
+                      size: 20,
+                    ),
+                    activeColor: Theme.of(context).colorScheme.primary,
+                    title: Text(
+                      "Settings",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
+                animationCurve: Curves.bounceIn,
+                backgroundColor: Theme.of(context).colorScheme.onSecondary,
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

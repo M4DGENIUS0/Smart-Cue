@@ -21,7 +21,6 @@ dependencies:
   equatable: ^2.0.7
   hive: ^2.2.3
   another_flushbar: ^1.12.30
-  persistent_bottom_nav_bar: ^6.2.1
   get_it: ^8.0.3
   drop_down_list: ^2.0.0
   auto_scroll_text: ^0.0.7
@@ -33,6 +32,8 @@ dependencies:
   dio: ^5.7.0
   openai_dart: ^0.4.5
   shared_preferences: ^2.4.0
+  flashy_tab_bar2: ^0.0.10
+  
 
 dev_dependencies:
   flutter_test:
