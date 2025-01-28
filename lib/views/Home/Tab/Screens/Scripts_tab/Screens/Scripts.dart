@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:smartcue/animation/hero_transition.dart';
 import 'package:smartcue/extension/popup_card/add_script_pop_up_card.dart';
 
 import '../../../../../views.dart';
@@ -65,20 +67,16 @@ class _ScriptsState extends State<Scripts> {
                       itemCount: scripts.length,
                       itemBuilder: (context, index) {
                         final script = scripts[index];
-                        return GridForScripts(
-                          title: script.title,
-                          content: script.content,
-                          onTap: () {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SmartCueScreen(
-                                    title: script.title,
-                                    content: script.content,
-                                  ),
-                                ),
-                                (Route<dynamic> route) => false);
-                          },
+                        return HeroTransition(
+                          tag: 'open ${script.id}',
+                          child: GridForScripts(
+                            title: script.title,
+                            content: script.content,
+                            onTap: () {
+                              context.go(
+                                  "/Add_Script/teleprompt_screen/SmartCueScreen?id=${script.id}&title=${script.title}&content=${script.content}");
+                            },
+                          ),
                         );
                       },
                     );

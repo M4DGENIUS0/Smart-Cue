@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smartcue/views/Add_Script/Bottom_Sheet/bloc/generation_bloc.dart';
 
 class ButtonForGeneration extends StatelessWidget {
@@ -9,7 +10,7 @@ class ButtonForGeneration extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<GenerationBloc, GenerationState>(
       listener: (context, state) {
-        state.loading ? null : Navigator.of(context).pop();
+        state.loading ? null : context.go('/');
       },
       child: SizedBox(
           height: 60,

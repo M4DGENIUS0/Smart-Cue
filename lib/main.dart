@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:smartcue/views/Add_Script/teleprompt_screen/bloc/Playback/playback_bloc.dart';
 import 'package:smartcue/views/views.dart';
 
+import 'route/app_routing.dart';
 import 'services/hive_services.dart';
 import 'views/Add_Script/Bottom_Sheet/bloc/generation_bloc.dart';
 import 'views/Add_Script/teleprompt_screen/bloc/smart_Cue/smart_cue_bloc.dart';
@@ -15,7 +17,7 @@ import 'views/Init_Home/Cubit/build_Screen_Cubit.dart';
 GetIt getIt = GetIt.instance;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  // debugPaintSizeEnabled = true;
   // Initialize Hive
   await HiveService.initHive();
   runApp(
@@ -52,11 +54,11 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, Theme) {
-          return MaterialApp(
+          return MaterialApp.router(
+            routerConfig: appRouting.router,
             title: 'Smart Cue',
             debugShowCheckedModeBanner: false,
             theme: Theme,
-            home: InitHome(),
             // home: SmartCueScreen(),
           );
         },

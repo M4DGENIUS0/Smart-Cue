@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/bloc/smart_Cue/smart_cue_bloc.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/widget/widget.dart';
 import 'package:smartcue/views/views.dart';
@@ -23,7 +24,7 @@ class _Create_Edit_ScreenState extends State<Create_Edit_Screen> {
       appBar: AppBar(
         leading: InkWell(
             onTap: () {
-              Navigator.of(context).pop();
+              context.go('/');
             },
             child: Icon(
               Icons.close,
@@ -34,7 +35,8 @@ class _Create_Edit_ScreenState extends State<Create_Edit_Screen> {
               onPressed: () {
                 CustomDialogBox().showAwesomeDialog(
                     context, NameofFile(), DialogType.warning, () {
-                  Navigator.of(context).pop();
+                  context
+                      .go('/Add_Script/teleprompt_screen/Create_Edit_Screen');
                   context.read<SmartCueBloc>().add(ClearTextEvent());
                 }, () {
                   context.read<SmartCueBloc>().add(SaveTextEvent(
@@ -42,14 +44,7 @@ class _Create_Edit_ScreenState extends State<Create_Edit_Screen> {
                       content:
                           context.read<SmartCueBloc>().contentController.text));
                   if (mounted) {
-                    // Perform actions like navigation only if the widget is still mounted
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => InitHome(),
-                      ),
-                      (Route<dynamic> route) => false,
-                    );
+                    context.go('/');
                   }
                   context.read<SmartCueBloc>().add(ClearTextEvent());
                 });

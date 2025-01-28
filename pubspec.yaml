@@ -33,6 +33,8 @@ dependencies:
   openai_dart: ^0.4.5
   shared_preferences: ^2.4.0
   flashy_tab_bar2: ^0.0.10
+  device_preview: ^1.2.0
+  go_router: ^14.7.1
   
 
 dev_dependencies:

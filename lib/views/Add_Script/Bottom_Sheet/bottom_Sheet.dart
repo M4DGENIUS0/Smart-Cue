@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'widget_for_bottom_Sheet/widget.dart';
 
 void openBottomSheet(
@@ -26,7 +27,7 @@ void openBottomSheet(
                   alignment: Alignment.topLeft,
                   child: IconButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      context.go('/');
                     },
                     icon: const Icon(Icons.close),
                   ),

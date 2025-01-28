@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smartcue/views/views.dart';
 
 import '../../views/Add_Script/Bottom_Sheet/bottom_Sheet.dart';
@@ -22,17 +23,12 @@ class PopupDialogBox {
       btnCancelColor: Theme.of(context).colorScheme.primary,
       btnOkColor: Theme.of(context).colorScheme.primary,
       btnCancelOnPress: () {
-        Navigator.of(context).pop();
         openBottomSheet(context);
       },
       btnOkText: "Create Script",
       btnCancelText: "Generate AI",
       btnOkOnPress: () {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Create_Edit_Screen(),
-            ));
+        context.go('/Add_Script/teleprompt_screen/Create_Edit_Screen');
       },
     ).show();
   }

@@ -23,14 +23,17 @@ class BottomPlayBackController extends StatelessWidget {
                 Icons.av_timer_rounded,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
-              Slider(
-                activeColor: Theme.of(context).colorScheme.primary,
-                value: state.scrollSpeed,
-                min: 2.0,
-                max: 100.0,
-                onChanged: (value) {
-                  bloc.add(ChangeScrollSpeedEvent(value));
-                },
+              Material(
+                color: Colors.transparent,
+                child: Slider(
+                  activeColor: Theme.of(context).colorScheme.primary,
+                  value: state.scrollSpeed,
+                  min: 2.0,
+                  max: 100.0,
+                  onChanged: (value) {
+                    bloc.add(ChangeScrollSpeedEvent(value));
+                  },
+                ),
               ),
             ],
           );
