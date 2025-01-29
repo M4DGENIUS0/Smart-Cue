@@ -4,18 +4,21 @@ class GridForScripts extends StatelessWidget {
   final String title;
   final String content;
   final VoidCallback onTap;
+  final GestureLongPressStartCallback onLongpress;
   const GridForScripts(
       {super.key,
       required this.title,
       required this.onTap,
-      required this.content});
+      required this.content,
+      required this.onLongpress});
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
+        onLongPressStart: onLongpress,
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),

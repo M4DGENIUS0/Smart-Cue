@@ -113,17 +113,8 @@ class _SmartCueScreenState extends State<SmartCueScreen>
           actions: [
             TextButton(
               onPressed: () {
-                context.read<SmartCueBloc>().add(SaveTextToPDFEvent());
-              },
-              child: Text(
-                "Save",
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                context.go('/Add_Script/teleprompt_screen/Create_Edit_Screen');
+                context.go(
+                    "/Add_Script/teleprompt_screen/Edit_Screen?id=${widget.id}&title=${widget.title}&content=${widget.content}");
               },
               child: Text(
                 "Edit",

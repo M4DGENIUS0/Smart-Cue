@@ -28,3 +28,14 @@ class ScriptsLoadingErrorState extends ScriptState {
   @override
   List<Object> get props => [message];
 }
+
+// script_tab_state.dart
+class ScriptExportSuccessState extends ScriptState {
+  final String message;
+  const ScriptExportSuccessState(this.message);
+}
+
+class ScriptExportErrorState extends ScriptState {
+  final String error;
+  const ScriptExportErrorState(this.error);
+}

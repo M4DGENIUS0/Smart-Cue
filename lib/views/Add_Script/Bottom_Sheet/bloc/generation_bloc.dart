@@ -36,6 +36,13 @@ class GenerationBloc extends Bloc<GenerationEvent, GenerationState> {
     on<UpdateLanguage>((event, emit) {
       emit(state.copyWith(language: event.language));
     });
+    on<ClearTextField>(
+      (event, emit) {
+        titleController.clear();
+        fileName.clear();
+      },
+    );
+
     on<PostRequesttoAPI>((event, emit) async {
       titleController.text = event.title;
       emit(state.copyWith(loading: true));
@@ -49,7 +56,6 @@ class GenerationBloc extends Bloc<GenerationEvent, GenerationState> {
 
         final prompt = scriptGeneration.prompt; // Use the prompt getter
         final result = await GoogleGenerativeAI().GemeniService(prompt);
-        print("Result are : $result");
 
         final newScript = ScriptModel(
           id: const Uuid().v4(),
@@ -67,5 +73,11 @@ class GenerationBloc extends Bloc<GenerationEvent, GenerationState> {
         add(ResetState());
       }
     });
+  }
+  @override
+  Future<void> close() {
+    titleController.dispose();
+    fileName.dispose();
+    return super.close();
   }
 }

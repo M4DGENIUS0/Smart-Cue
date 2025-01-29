@@ -14,8 +14,11 @@ class Setting extends StatelessWidget {
           Icon(
             Icons.settings,
             size: 50,
+            color: Theme.of(context).colorScheme.primary,
           ),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.onSecondary),
             onPressed: () {
               context.read<ThemeCubit>().toggleTheme();
             },

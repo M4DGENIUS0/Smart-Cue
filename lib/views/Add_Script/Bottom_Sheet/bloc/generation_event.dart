@@ -50,3 +50,9 @@ class ResetState extends GenerationEvent {
   @override
   List<Object?> get props => [];
 }
+
+class ClearTextField extends GenerationEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}

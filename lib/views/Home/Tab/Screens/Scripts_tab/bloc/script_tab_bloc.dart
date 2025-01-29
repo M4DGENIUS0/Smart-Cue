@@ -15,7 +15,7 @@ class ScriptBloc extends Bloc<ScriptEvent, ScriptState> {
 
   ScriptBloc() : super(ScriptsLoadingState()) {
     on<LoadScriptsEvent>(_onLoadScriptsEvent);
-
+    on<DeleteScriptEvent>(_onDeleteScriptEvent);
     // Listen for updates from the repository
     _scriptsSubscription = scriptRepository.scriptsStream.listen((scripts) {
       add(LoadScriptsEvent()); // Trigger a state update
@@ -27,6 +27,19 @@ class ScriptBloc extends Bloc<ScriptEvent, ScriptState> {
     try {
       final scripts = scriptRepository.getAllScript();
       emit(ScriptsLoadedState(scripts)); // Emit the updated state
+    } catch (e) {
+      emit(ScriptsLoadingErrorState(e.toString()));
+    }
+  }
+
+  void _onDeleteScriptEvent(
+    DeleteScriptEvent event,
+    Emitter<ScriptState> emit,
+  ) async {
+    try {
+      await scriptRepository.deleteScript(event.scriptId);
+      final updatedScripts = scriptRepository.getAllScript();
+      emit(ScriptsLoadedState(updatedScripts));
     } catch (e) {
       emit(ScriptsLoadingErrorState(e.toString()));
     }

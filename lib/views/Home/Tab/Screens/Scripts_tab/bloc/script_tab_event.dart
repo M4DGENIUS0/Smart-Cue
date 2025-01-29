@@ -8,3 +8,13 @@ abstract class ScriptEvent extends Equatable {
 }
 
 class LoadScriptsEvent extends ScriptEvent {}
+
+// Add this new event
+class DeleteScriptEvent extends ScriptEvent {
+  final String scriptId;
+
+  const DeleteScriptEvent(this.scriptId);
+
+  @override
+  List<Object> get props => [scriptId];
+}

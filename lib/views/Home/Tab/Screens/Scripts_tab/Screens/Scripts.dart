@@ -6,6 +6,7 @@ import 'package:smartcue/extension/popup_card/add_script_pop_up_card.dart';
 
 import '../../../../../views.dart';
 import '../bloc/script_tab_bloc.dart';
+import '../widget/LongPress_Popup_menu.dart';
 
 class Scripts extends StatefulWidget {
   const Scripts({super.key});
@@ -70,6 +71,10 @@ class _ScriptsState extends State<Scripts> {
                             onTap: () {
                               context.go(
                                   "/Add_Script/teleprompt_screen/SmartCueScreen?id=${script.id}&title=${script.title}&content=${script.content}");
+                            },
+                            onLongpress: (LongPressStartDetails detail) {
+                              LongpressPopupMenu()
+                                  .showDropDownMenu(context, script, detail);
                             },
                           ),
                         );

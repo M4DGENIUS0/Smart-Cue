@@ -1,19 +1,19 @@
 import 'package:hive/hive.dart';
 
-part 'script_model.g.dart'; // Required for code generation
+part 'script_model.g.dart';
 
-@HiveType(typeId: 1) // Assign a unique type ID
+@HiveType(typeId: 1)
 class ScriptModel {
   @HiveField(0)
-  final String id; // Unique identifier for the script
+  final String id;
   @HiveField(1)
-  final String title; // Title of the script
+  final String title;
   @HiveField(2)
-  final String content; // Text content of the script
+  final String content;
   @HiveField(3)
-  final bool isGenerated; // Whether the script is AI-generated
+  final bool isGenerated;
   @HiveField(4)
-  final DateTime createdAt; // Creation timestamp
+  final DateTime createdAt;
 
   ScriptModel({
     required this.id,

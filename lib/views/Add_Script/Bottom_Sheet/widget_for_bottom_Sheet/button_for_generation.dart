@@ -48,10 +48,11 @@ class _ButtonForGenerationState extends State<ButtonForGeneration> {
                         context, NameTheScript(), DialogType.warning, () {
                       context.go('/');
                       context.read<GenerationBloc>().add(ResetState());
+                      context.read<GenerationBloc>().add(ClearTextField());
                     }, () {
                       context.read<GenerationBloc>().add(PostRequesttoAPI());
-                      // context.go(
-                      //             "/Add_Script/teleprompt_screen/SmartCueScreen?id=${}&title=${script.title}&content=${script.content}");
+                      context.read<GenerationBloc>().add(ClearTextField());
+
                       context.go("/");
                     });
                   },
