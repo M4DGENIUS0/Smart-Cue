@@ -50,6 +50,7 @@ class _ScriptsState extends State<Scripts> {
                       'No scripts found.',
                     ))
                   : GridView.builder(
+                      physics: BouncingScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent: 140,
