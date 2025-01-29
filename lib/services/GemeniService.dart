@@ -1,7 +1,7 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class GoogleGenerativeAI {
-  final String API_KEY = "AIzaSyAVKoelBPpnVOn2JqHSSg6xDzQuV8rVwg4";
+  final String API_KEY = "Your-API_KEY";
 
   Future GemeniService(String prompt) async {
     try {
