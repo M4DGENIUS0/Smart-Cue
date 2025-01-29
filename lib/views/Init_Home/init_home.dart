@@ -27,45 +27,41 @@ class _InitHomeState extends State<InitHome> {
       ),
       bottomNavigationBar: BlocBuilder<BuildScreenCubit, int>(
         builder: (context, currentIndex) {
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FlashyTabBar(
-                selectedIndex: currentIndex,
-                onItemSelected: (index) {
-                  context.read<BuildScreenCubit>().changeTab(index);
-                },
-                items: [
-                  /// Home
-                  FlashyTabBarItem(
-                    icon: Icon(
-                      Icons.home,
-                      size: 20,
-                    ),
-                    title: Text(
-                      "Home",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    activeColor: Theme.of(context).colorScheme.primary,
-                  ),
-
-                  /// Settings
-                  FlashyTabBarItem(
-                    icon: Icon(
-                      Icons.settings,
-                      size: 20,
-                    ),
-                    activeColor: Theme.of(context).colorScheme.primary,
-                    title: Text(
-                      "Settings",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ],
-                animationCurve: Curves.bounceIn,
-                backgroundColor: Theme.of(context).colorScheme.onSecondary,
+          return FlashyTabBar(
+            iconSize: 20,
+            selectedIndex: currentIndex,
+            onItemSelected: (index) {
+              context.read<BuildScreenCubit>().changeTab(index);
+            },
+            items: [
+              /// Home
+              FlashyTabBarItem(
+                icon: Icon(
+                  Icons.home,
+                  size: 20,
+                ),
+                title: Text(
+                  "Home",
+                  style: TextStyle(fontSize: 16),
+                ),
+                activeColor: Theme.of(context).colorScheme.primary,
               ),
-            ),
+
+              /// Settings
+              FlashyTabBarItem(
+                icon: Icon(
+                  Icons.settings,
+                  size: 20,
+                ),
+                activeColor: Theme.of(context).colorScheme.primary,
+                title: Text(
+                  "Settings",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+            animationCurve: Curves.bounceIn,
+            backgroundColor: Theme.of(context).colorScheme.onSecondary,
           );
         },
       ),

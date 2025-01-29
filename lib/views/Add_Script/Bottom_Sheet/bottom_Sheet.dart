@@ -16,7 +16,7 @@ void openBottomSheet(
     isScrollControlled: true,
     builder: (BuildContext context) {
       return FractionallySizedBox(
-        heightFactor: 0.9, // 90% of the screen height
+        heightFactor: 0.9,
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

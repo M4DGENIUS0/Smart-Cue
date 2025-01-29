@@ -1,23 +1,26 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:smartcue/services/openaiDart_service.dart';
+import 'package:smartcue/services/GemeniService.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../model/script_model.dart';
 import '../../../../prompt/script_generation.dart';
 import '../../../../repository/script repo/hive_script_repo.dart';
-import '../../../../services/openAi_service.dart';
 
 part 'generation_event.dart';
 part 'generation_state.dart';
 
 class GenerationBloc extends Bloc<GenerationEvent, GenerationState> {
-  final OpenaiService openAIService = OpenaiService();
   final TextEditingController titleController = TextEditingController();
   final HiveScriptRepository scriptRepository = HiveScriptRepository();
+  final TextEditingController fileName = TextEditingController();
 
   GenerationBloc() : super(const GenerationState()) {
+    on<ResetState>((event, emit) {
+      emit(const GenerationState());
+    });
+
     on<UpdateTemplate>((event, emit) {
       emit(state.copyWith(selectedTemplate: event.template));
     });
@@ -34,22 +37,25 @@ class GenerationBloc extends Bloc<GenerationEvent, GenerationState> {
       emit(state.copyWith(language: event.language));
     });
     on<PostRequesttoAPI>((event, emit) async {
+      titleController.text = event.title;
       emit(state.copyWith(loading: true));
       try {
-        final prompt = ScriptGeneration(
-                template: state.selectedTemplate,
-                description: state.description,
-                toneOfVoice: state.toneOfVoice,
-                language: state.language)
-            .toString();
-        // final result = await openAIService.fetchTeleprompt(prompt);
-        final result = openaidart().completions(prompt);
+        final scriptGeneration = ScriptGeneration(
+          template: state.selectedTemplate,
+          description: state.description,
+          toneOfVoice: state.toneOfVoice,
+          language: state.language,
+        );
+
+        final prompt = scriptGeneration.prompt; // Use the prompt getter
+        final result = await GoogleGenerativeAI().GemeniService(prompt);
+        print("Result are : $result");
 
         final newScript = ScriptModel(
           id: const Uuid().v4(),
-          title: titleController.text ?? "",
-          content: result.toString(),
-          isGenerated: false,
+          title: titleController.text,
+          content: result,
+          isGenerated: true,
           createdAt: DateTime.now(),
         );
 
@@ -58,6 +64,7 @@ class GenerationBloc extends Bloc<GenerationEvent, GenerationState> {
         print('Error: $e');
       } finally {
         emit(state.copyWith(loading: false));
+        add(ResetState());
       }
     });
   }

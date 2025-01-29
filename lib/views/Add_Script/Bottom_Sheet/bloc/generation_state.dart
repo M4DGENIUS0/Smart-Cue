@@ -6,6 +6,7 @@ class GenerationState extends Equatable {
   final String toneOfVoice;
   final String language;
   final String Display;
+  final String title;
   final bool loading;
 
   const GenerationState(
@@ -14,7 +15,8 @@ class GenerationState extends Equatable {
       this.toneOfVoice = '',
       this.language = '',
       this.Display = '',
-      this.loading = true});
+      this.loading = false,
+      this.title = ''});
 
   GenerationState copyWith(
       {String? selectedTemplate,
@@ -22,6 +24,7 @@ class GenerationState extends Equatable {
       String? toneOfVoice,
       String? language,
       String? Display,
+      String? title,
       bool? loading}) {
     return GenerationState(
         Display: Display ?? this.Display,
@@ -29,12 +32,20 @@ class GenerationState extends Equatable {
         description: description ?? this.description,
         toneOfVoice: toneOfVoice ?? this.toneOfVoice,
         language: language ?? this.language,
-        loading: loading ?? this.loading);
+        loading: loading ?? this.loading,
+        title: title ?? this.title);
   }
 
   @override
-  List<Object?> get props =>
-      [Display, loading, language, toneOfVoice, description, selectedTemplate];
+  List<Object?> get props => [
+        Display,
+        loading,
+        language,
+        toneOfVoice,
+        description,
+        selectedTemplate,
+        title
+      ];
 }
 
 final class GenerationInitial extends GenerationState {}

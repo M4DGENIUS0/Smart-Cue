@@ -35,6 +35,7 @@ dependencies:
   flashy_tab_bar2: ^0.0.10
   device_preview: ^1.2.0
   go_router: ^14.7.1
+  google_generative_ai: ^0.4.6
   
 
 dev_dependencies:

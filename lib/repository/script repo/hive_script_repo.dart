@@ -10,16 +10,20 @@ class HiveScriptRepository implements HiveRepository {
   final _script = HiveService.scriptBox;
   final StreamController<List<ScriptModel>> _scriptsController =
       StreamController<List<ScriptModel>>.broadcast();
+
   Stream<List<ScriptModel>> get scriptsStream => _scriptsController.stream;
+
   @override
   Future<void> addScript(ScriptModel script) async {
     await _script.put(script.id, script);
+    _emitScripts(); // Emit updated list
   }
 
   @override
   Future<void> deleteScript(String id) async {
     if (_script.containsKey(id)) {
       await _script.delete(id);
+      _emitScripts(); // Emit updated list
     }
   }
 
@@ -34,9 +38,10 @@ class HiveScriptRepository implements HiveRepository {
   }
 
   @override
-  Future<void> updateScript(String id, ScriptModel UpdateScript) async {
+  Future<void> updateScript(String id, ScriptModel updateScript) async {
     if (_script.containsKey(id)) {
-      await _script.put(id, UpdateScript);
+      await _script.put(id, updateScript);
+      _emitScripts(); // Emit updated list
     }
   }
 
@@ -51,7 +56,11 @@ class HiveScriptRepository implements HiveRepository {
         isGenerated: false,
       );
       await _script.put(demoScript.id, demoScript);
-      _scriptsController.add(_script.values.toList()); // Update stream
+      _emitScripts(); // Emit updated list
     }
+  }
+
+  void _emitScripts() {
+    _scriptsController.add(_script.values.toList());
   }
 }

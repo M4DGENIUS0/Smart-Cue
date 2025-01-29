@@ -24,20 +24,14 @@ class _ScriptsState extends State<Scripts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: GestureDetector(
-        // backgroundColor: Colors.yellowAccent,
-        onTap: () {
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        onPressed: () {
           PopupDialogBox().showAwesomeDialog(context);
         },
-        child: Material(
-          color: Theme.of(context).colorScheme.primary,
-          elevation: 2,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-          child: const Icon(
-            Icons.add_rounded,
-            size: 56,
-          ),
+        child: const Icon(
+          Icons.add_rounded,
+          size: 40,
         ),
       ),
       body: Padding(

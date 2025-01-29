@@ -14,13 +14,18 @@ class ScriptGeneration {
   /// Generates the dynamic prompt based on user input
   String get prompt {
     return """
-Create Teleprompt Script with the following options: 
+
+Create Teleprompt Script with the following options:
 Template: $template 
-Description: $description 
-Tone of voice: $toneOfVoice 
+Description: $description
+Tone of voice: $toneOfVoice
 Language: $language 
-Note: Generate the script according to Template, Description, Tone of Voice, and Language. Just create text; don't add additional useless things. 
-Don't add [], Scene, Voice, steps, or over-complicated formatting. Simple display text only.
+Note: Generate the script according to the template, description, tone of voice, and language. Do not add additional text, formatting, or steps. Generate plain text output for a teleprompt.
     """;
+  }
+
+  @override
+  String toString() {
+    return prompt;
   }
 }

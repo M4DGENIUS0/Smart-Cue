@@ -23,6 +23,7 @@ class DescriptionBox extends StatelessWidget {
             minLines: 5,
             onChanged: (value) {
               context.read<GenerationBloc>().add(UpdateDescription(value));
+              print(value);
             },
             decoration: InputDecoration(
               border: OutlineInputBorder(),
