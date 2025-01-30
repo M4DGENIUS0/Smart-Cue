@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/bloc/smart_Cue/smart_cue_bloc.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/widget/widget.dart';
-import 'package:smartcue/views/views.dart';
 
 import '../../../../extension/dialog_box/custom_dialog_box.dart';
 import '../bloc/Playback/playback_bloc.dart';
@@ -25,6 +24,7 @@ class _Create_ScreenState extends State<Create_Screen> {
         leading: InkWell(
             onTap: () {
               context.go('/');
+              context.read<SmartCueBloc>().add(ClearTextEvent());
             },
             child: Icon(
               Icons.close,
@@ -37,12 +37,16 @@ class _Create_ScreenState extends State<Create_Screen> {
                     context, NameofFile(), DialogType.warning, () {
                   context
                       .go('/Add_Script/teleprompt_screen/Create_Edit_Screen');
-                  context.read<SmartCueBloc>().add(ClearTextEvent());
                 }, () {
                   context.read<SmartCueBloc>().add(SaveTextEvent(
                       title: context.read<SmartCueBloc>().titleController.text,
                       content:
                           context.read<SmartCueBloc>().contentController.text));
+                  print(
+                      "Saving script: ${context.read<SmartCueBloc>().titleController.text}");
+                  print(
+                      "Saving script: ${context.read<SmartCueBloc>().contentController.text}");
+
                   if (mounted) {
                     context.go('/');
                   }

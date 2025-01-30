@@ -20,6 +20,15 @@ class UpdateDescription extends GenerationEvent {
   List<Object?> get props => [description];
 }
 
+class UpdateTitle extends GenerationEvent {
+  final String title;
+
+  UpdateTitle(this.title);
+
+  @override
+  List<Object?> get props => [title];
+}
+
 class UpdateToneOfVoice extends GenerationEvent {
   final String toneOfVoice;
 
@@ -40,6 +49,7 @@ class UpdateLanguage extends GenerationEvent {
 
 class PostRequesttoAPI extends GenerationEvent {
   final String title;
+  // final String description;
 
   PostRequesttoAPI({this.title = ""});
   @override

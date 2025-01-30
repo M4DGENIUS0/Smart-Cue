@@ -1,12 +1,7 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:pdf/widgets.dart' as p;
 import 'package:uuid/uuid.dart';
-
 import '../../../../../model/script_model.dart';
 import '../../../../../repository/script repo/hive_script_repo.dart';
 part 'smart_cue_event.dart';
@@ -54,12 +49,5 @@ class SmartCueBloc extends Bloc<SmartCueEvent, SmartCueState> {
             id: script.id, title: script.title, content: script.content));
       }
     });
-
-    @override
-    Future<void> close() {
-      titleController.dispose();
-      contentController.dispose();
-      return super.close();
-    }
   }
 }

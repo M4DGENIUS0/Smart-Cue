@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/bloc/smart_Cue/smart_cue_bloc.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/widget/widget.dart';
-import 'package:smartcue/views/views.dart';
 
 import '../../../../extension/dialog_box/custom_dialog_box.dart';
 import '../bloc/Playback/playback_bloc.dart';

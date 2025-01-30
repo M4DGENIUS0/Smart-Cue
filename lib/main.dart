@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:smartcue/views/Add_Script/teleprompt_screen/bloc/Playback/playback_bloc.dart';
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ScrollCubit(),
         ),
         BlocProvider(
-          create: (context) => ScriptBloc(),
+          create: (context) => ScriptBloc()..add(LoadScriptsEvent()),
         ),
         BlocProvider(
           create: (_) => ThemeCubit(),
@@ -54,12 +54,18 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, Theme) {
-          return MaterialApp.router(
-            routerConfig: appRouting.router,
-            title: 'Smart Cue',
-            debugShowCheckedModeBanner: false,
-            theme: Theme,
-            // home: SmartCueScreen(),
+          return ScreenUtilInit(
+            designSize: const Size(432, 964.8),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            child: MaterialApp.router(
+              // backButtonDispatcher: RootBackButtonDispatcher(),
+              routerConfig: appRouting.router,
+              title: 'Smart Cue',
+              debugShowCheckedModeBanner: false,
+              theme: Theme,
+              // home: SmartCueScreen(),
+            ),
           );
         },
       ),

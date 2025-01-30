@@ -18,3 +18,11 @@ class DeleteScriptEvent extends ScriptEvent {
   @override
   List<Object> get props => [scriptId];
 }
+
+class ScriptsUpdatedEvent extends ScriptEvent {
+  final List<ScriptModel> scripts;
+  const ScriptsUpdatedEvent(this.scripts);
+
+  @override
+  List<Object> get props => [scripts];
+}

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:smartcue/animation/hero_transition.dart';
 import 'package:smartcue/extension/popup_card/add_script_pop_up_card.dart';
 
@@ -19,6 +21,7 @@ class _ScriptsState extends State<Scripts> {
   @override
   void initState() {
     context.read<ScriptBloc>().add(LoadScriptsEvent());
+
     super.initState();
   }
 
@@ -30,13 +33,13 @@ class _ScriptsState extends State<Scripts> {
         onPressed: () {
           PopupDialogBox().showAwesomeDialog(context);
         },
-        child: const Icon(
+        child: Icon(
           Icons.add_rounded,
-          size: 40,
+          size: 40.r,
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0.r),
         child: BlocBuilder<ScriptBloc, ScriptState>(
           builder: (context, state) {
             if (state is ScriptsLoadingState) {
@@ -46,10 +49,7 @@ class _ScriptsState extends State<Scripts> {
             } else if (state is ScriptsLoadedState) {
               final scripts = state.scripts;
               return scripts.isEmpty
-                  ? const Center(
-                      child: Text(
-                      'No scripts found.',
-                    ))
+                  ? const EmptyScripts()
                   : GridView.builder(
                       physics: BouncingScrollPhysics(),
                       gridDelegate:
@@ -63,20 +63,17 @@ class _ScriptsState extends State<Scripts> {
                       itemCount: scripts.length,
                       itemBuilder: (context, index) {
                         final script = scripts[index];
-                        return HeroTransition(
-                          tag: 'open ${script.id}',
-                          child: GridForScripts(
-                            title: script.title,
-                            content: script.content,
-                            onTap: () {
-                              context.go(
-                                  "/Add_Script/teleprompt_screen/SmartCueScreen?id=${script.id}&title=${script.title}&content=${script.content}");
-                            },
-                            onLongpress: (LongPressStartDetails detail) {
-                              LongpressPopupMenu()
-                                  .showDropDownMenu(context, script, detail);
-                            },
-                          ),
+                        return GridForScripts(
+                          title: script.title,
+                          content: script.content,
+                          onTap: () {
+                            context.go(
+                                "/Add_Script/teleprompt_screen/SmartCueScreen?id=${script.id}&title=${script.title}&content=${script.content}");
+                          },
+                          onLongpress: (LongPressStartDetails detail) {
+                            LongpressPopupMenu()
+                                .showDropDownMenu(context, script, detail);
+                          },
                         );
                       },
                     );

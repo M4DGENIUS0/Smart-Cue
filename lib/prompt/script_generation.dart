@@ -20,7 +20,7 @@ Template: $template
 Description: $description
 Tone of voice: $toneOfVoice
 Language: $language 
-Note: Generate the script according to the template, description, tone of voice, and language. Do not add additional text, formatting, or steps. Generate plain text output for a teleprompt.
+Note: Generate the script in paragraph and generate at least 10 to 15 big or medium paragraph, Make it simple easy to understand and choose easy words, according to the template, description, tone of voice, and language. Do not add additional text, formatting, or steps. Generate plain text output for a teleprompt.
     """;
   }
 

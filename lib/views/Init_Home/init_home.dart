@@ -36,6 +36,7 @@ class _InitHomeState extends State<InitHome> {
             items: [
               /// Home
               FlashyTabBarItem(
+                inactiveColor: Theme.of(context).colorScheme.onPrimary,
                 icon: Icon(
                   Icons.home,
                   size: 20,
@@ -49,6 +50,7 @@ class _InitHomeState extends State<InitHome> {
 
               /// Settings
               FlashyTabBarItem(
+                inactiveColor: Theme.of(context).colorScheme.onPrimary,
                 icon: Icon(
                   Icons.settings,
                   size: 20,

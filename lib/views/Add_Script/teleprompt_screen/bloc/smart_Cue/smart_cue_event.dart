@@ -12,7 +12,7 @@ class SaveTextEvent extends SmartCueEvent {
   final String? id;
   final String content;
 
-  const SaveTextEvent({this.title = "", this.content = "", this.id = ""});
+  const SaveTextEvent({this.title = "", this.content = "", this.id});
 
   @override
   List<Object?> get props => [title, content, id];

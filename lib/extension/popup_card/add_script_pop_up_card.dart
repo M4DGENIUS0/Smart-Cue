@@ -1,7 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smartcue/views/views.dart';
 
 import '../../views/Add_Script/Bottom_Sheet/bottom_Sheet.dart';
 
@@ -23,7 +22,7 @@ class PopupDialogBox {
       btnCancelColor: Theme.of(context).colorScheme.primary,
       btnOkColor: Theme.of(context).colorScheme.primary,
       btnCancelOnPress: () {
-        openBottomSheet(context);
+        GenerateScriptBottomSheet().openBottomSheet(context);
       },
       btnOkText: "Create Script",
       btnCancelText: "Generate AI",

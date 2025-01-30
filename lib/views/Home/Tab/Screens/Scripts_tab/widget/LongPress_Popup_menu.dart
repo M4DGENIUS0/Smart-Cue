@@ -1,11 +1,15 @@
+import 'dart:io';
+
+import 'package:another_flushbar/flushbar.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../../../extension/dialog_box/custom_dialog_box.dart';
 import '../../../../../../model/script_model.dart';
-import '../../../../../../utils/Status/ExportFormat.dart';
 import '../bloc/script_tab_bloc.dart';
 import 'confirm_delete_button.dart';
 
@@ -35,7 +39,9 @@ class LongpressPopupMenu {
             leading: const Icon(Icons.ios_share),
             title: Text(
               'Export',
-              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -62,12 +68,6 @@ class LongpressPopupMenu {
     final RenderBox overlay =
         Overlay.of(context).context.findRenderObject() as RenderBox;
     final adjustedPosition = position.translate(overlay.size.width * 0.4, 0);
-    String exportAsPlainText(ScriptModel script) {
-      // Implement your plain text export logic here
-      final content = '${script.title}\n\n${script.content}';
-      return content;
-      // Example: Share.share(content);
-    }
 
     showMenu(
       color: Theme.of(context).colorScheme.onSecondary,
@@ -86,14 +86,67 @@ class LongpressPopupMenu {
               'Plain Text',
               style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
             ),
-            onTap: () {
+            onTap: () async {
               Navigator.pop(context);
-              exportAsPlainText(script);
+              await _exportAsPlainText(context, script);
             },
           ),
         ),
       ],
     );
+  }
+
+  Future<void> _exportAsPlainText(
+      BuildContext context, ScriptModel script) async {
+    if (Platform.isAndroid) {
+      final status = await Permission.storage.request();
+      if (!status.isGranted) {
+        _showError(context, 'Storage permission denied');
+        return;
+      }
+    }
+
+    try {
+      final String? outputPath = await FilePicker.platform.saveFile(
+        dialogTitle: 'Save Script',
+        fileName: '${script.title.replaceAll(' ', '_')}.txt',
+        type: FileType.custom,
+        allowedExtensions: ['txt'],
+        lockParentWindow: true,
+      );
+
+      if (outputPath != null) {
+        final File file = File(outputPath);
+        await file.writeAsString('${script.title}\n\n${script.content}');
+        _showSuccess(context, 'File saved successfully!');
+      }
+    } catch (e) {
+      _showError(context, 'Failed to save file: ${e.toString()}');
+    }
+  }
+
+  void _showSuccess(BuildContext context, String message) {
+    Flushbar(
+      backgroundColor: Colors.green,
+      message: message,
+      icon: const Icon(Icons.error_outline, color: Colors.white),
+      duration: const Duration(seconds: 3),
+      messageColor: Colors.white,
+      borderRadius: BorderRadius.all(Radius.circular(8.r)),
+      flushbarPosition: FlushbarPosition.TOP,
+    ).show(context);
+  }
+
+  void _showError(BuildContext context, String message) {
+    Flushbar(
+      backgroundColor: Colors.red.shade600,
+      message: message,
+      icon: const Icon(Icons.error_outline, color: Colors.white),
+      duration: const Duration(seconds: 3),
+      messageColor: Colors.white,
+      borderRadius: BorderRadius.all(Radius.circular(8.r)),
+      flushbarPosition: FlushbarPosition.TOP,
+    ).show(context);
   }
 
   // Delete confirmation dialog

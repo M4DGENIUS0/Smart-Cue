@@ -30,7 +30,6 @@ class PopupSizeButton extends StatelessWidget {
                       TextStyle(color: Theme.of(context).colorScheme.onPrimary),
                 ),
               ),
-              // Generate sizes options from the list
               ...textSizes.map(
                 (size) => PopupMenuItem<double>(
                   value: size,

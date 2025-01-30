@@ -12,3 +12,4 @@ export 'Add_Script/teleprompt_screen/screen/Teleprompt_screen.dart';
 export 'Add_Script/teleprompt_screen/screen/Create_Screen.dart';
 export 'theme/themeCubit.dart';
 export 'Add_Script/teleprompt_screen/screen/Edit_Screen.dart';
+export 'Home/Tab/Screens/Scripts_tab/Screens/Empty_Scripts.dart';

@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smartcue/animation/hero_transition.dart';
-import 'package:smartcue/views/Add_Script/teleprompt_screen/bloc/smart_Cue/smart_cue_bloc.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/cubit/scroll_state.dart';
-
-import '../../../views.dart';
 import '../Controller/Screen_Scroll_Helper.dart';
 import '../bloc/Playback/playback_bloc.dart';
 import '../widget/widget.dart';
@@ -132,38 +129,35 @@ class _SmartCueScreenState extends State<SmartCueScreen>
         ),
         body: BlocBuilder<ScrollCubit, ScrollState>(
           builder: (context, state) {
-            return HeroTransition(
-              tag: 'ope${widget.id}',
-              child: Column(
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      controller: scrollHelper.scrollController,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: BlocBuilder<PlaybackBloc, PlaybackState>(
-                            builder: (context, state) {
-                          return Text(
-                            widget.content,
-                            style: TextStyle(
-                              fontSize: state.textSize,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.justify,
-                          );
-                        }),
-                      ),
+            return Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    controller: scrollHelper.scrollController,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: BlocBuilder<PlaybackBloc, PlaybackState>(
+                          builder: (context, state) {
+                        return SelectableText(
+                          widget.content,
+                          style: TextStyle(
+                            fontSize: state.textSize,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.justify,
+                        );
+                      }),
                     ),
                   ),
-                  Wrap(children: [
-                    BottomPlayBackController(),
-                    PlayBackMenu(
-                      scrollHelper: scrollHelper,
-                    )
-                  ]),
-                ],
-              ),
+                ),
+                Wrap(children: [
+                  BottomPlayBackController(),
+                  PlayBackMenu(
+                    scrollHelper: scrollHelper,
+                  )
+                ]),
+              ],
             );
           },
         ),

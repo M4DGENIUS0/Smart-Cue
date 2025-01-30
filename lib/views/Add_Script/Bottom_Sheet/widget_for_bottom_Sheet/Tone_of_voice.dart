@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/component/generate_by_ai_components/BottomSheet_Components.dart';
 import '../bloc/generation_bloc.dart';
@@ -12,11 +13,14 @@ class ToneOfVoice extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "Tone of Voice",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onPrimary),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 10.h),
         BlocBuilder<GenerationBloc, GenerationState>(
           builder: (context, state) {
             return SingleChildScrollView(
@@ -37,13 +41,17 @@ class ToneOfVoice extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 8),
                       decoration: BoxDecoration(
-                        color:
-                            isSelected ? Colors.yellowAccent : Colors.grey[200],
-                        borderRadius: BorderRadius.circular(8),
+                        color: isSelected
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context).colorScheme.onSecondary,
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: Text(
                         option,
                         style: TextStyle(
+                            color: isSelected
+                                ? Colors.black
+                                : Theme.of(context).colorScheme.onPrimary,
                             fontWeight: isSelected
                                 ? FontWeight.bold
                                 : FontWeight.normal),

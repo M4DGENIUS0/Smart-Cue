@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -16,9 +15,15 @@ class ScriptBloc extends Bloc<ScriptEvent, ScriptState> {
   ScriptBloc() : super(ScriptsLoadingState()) {
     on<LoadScriptsEvent>(_onLoadScriptsEvent);
     on<DeleteScriptEvent>(_onDeleteScriptEvent);
-    // Listen for updates from the repository
+
+    // Listen for real-time script updates
     _scriptsSubscription = scriptRepository.scriptsStream.listen((scripts) {
-      add(LoadScriptsEvent()); // Trigger a state update
+      add(ScriptsUpdatedEvent(scripts));
+    });
+
+    // Handle real-time updates
+    on<ScriptsUpdatedEvent>((event, emit) {
+      emit(ScriptsLoadedState(event.scripts));
     });
   }
 
@@ -26,20 +31,16 @@ class ScriptBloc extends Bloc<ScriptEvent, ScriptState> {
       LoadScriptsEvent event, Emitter<ScriptState> emit) async {
     try {
       final scripts = scriptRepository.getAllScript();
-      emit(ScriptsLoadedState(scripts)); // Emit the updated state
+      emit(ScriptsLoadedState(scripts));
     } catch (e) {
       emit(ScriptsLoadingErrorState(e.toString()));
     }
   }
 
   void _onDeleteScriptEvent(
-    DeleteScriptEvent event,
-    Emitter<ScriptState> emit,
-  ) async {
+      DeleteScriptEvent event, Emitter<ScriptState> emit) async {
     try {
       await scriptRepository.deleteScript(event.scriptId);
-      final updatedScripts = scriptRepository.getAllScript();
-      emit(ScriptsLoadedState(updatedScripts));
     } catch (e) {
       emit(ScriptsLoadingErrorState(e.toString()));
     }

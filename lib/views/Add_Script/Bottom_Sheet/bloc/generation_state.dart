@@ -1,45 +1,50 @@
 part of 'generation_bloc.dart';
 
 class GenerationState extends Equatable {
+  final String errormessage;
   final String selectedTemplate;
   final String description;
   final String toneOfVoice;
   final String language;
-  final String Display;
+  final String display;
   final String title;
-  final bool loading;
 
+  final GenerationStatus status;
   const GenerationState(
       {this.selectedTemplate = '',
+      this.errormessage = '',
       this.description = '',
       this.toneOfVoice = '',
       this.language = '',
-      this.Display = '',
-      this.loading = false,
+      this.display = '',
+      this.status = GenerationStatus.initial,
       this.title = ''});
 
   GenerationState copyWith(
       {String? selectedTemplate,
       String? description,
+      String? errormessage,
       String? toneOfVoice,
       String? language,
       String? Display,
       String? title,
-      bool? loading}) {
+      GenerationStatus? status}) {
     return GenerationState(
-        Display: Display ?? this.Display,
+        status: status ?? this.status,
+        errormessage: errormessage ?? this.errormessage,
+        display: Display ?? display,
         selectedTemplate: selectedTemplate ?? this.selectedTemplate,
         description: description ?? this.description,
         toneOfVoice: toneOfVoice ?? this.toneOfVoice,
         language: language ?? this.language,
-        loading: loading ?? this.loading,
         title: title ?? this.title);
   }
 
   @override
   List<Object?> get props => [
-        Display,
-        loading,
+        errormessage,
+        display,
+        status,
         language,
         toneOfVoice,
         description,
