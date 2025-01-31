@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smartcue/animation/hero_transition.dart';
 import 'package:smartcue/views/Add_Script/teleprompt_screen/cubit/scroll_state.dart';
 import '../Controller/Screen_Scroll_Helper.dart';
 import '../bloc/Playback/playback_bloc.dart';
@@ -37,11 +36,11 @@ class _SmartCueScreenState extends State<SmartCueScreen>
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
-    ); // Adjust duration
+    );
     _scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Curves.easeInOut, // Smooth curve
+        curve: Curves.easeInOut,
       ),
     );
 
@@ -54,7 +53,7 @@ class _SmartCueScreenState extends State<SmartCueScreen>
 
   @override
   void dispose() {
-    _controller.dispose(); // Dispose the controller
+    _controller.dispose();
     scrollHelper.dispose();
     _scrollTimer?.cancel();
     _scrollController.dispose();
@@ -124,8 +123,8 @@ class _SmartCueScreenState extends State<SmartCueScreen>
             widget.title,
           ),
           titleTextStyle: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
-          ),
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontFamily: "Zain"),
         ),
         body: BlocBuilder<ScrollCubit, ScrollState>(
           builder: (context, state) {
@@ -141,10 +140,10 @@ class _SmartCueScreenState extends State<SmartCueScreen>
                         return SelectableText(
                           widget.content,
                           style: TextStyle(
-                            fontSize: state.textSize,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: state.textSize,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Zain"),
                           textAlign: TextAlign.justify,
                         );
                       }),

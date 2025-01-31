@@ -22,7 +22,10 @@ class _ScriptsHomeState extends State<ScriptsHome> {
           ),
           centerTitle: true,
           titleTextStyle: TextStyle(
-              color: Theme.of(context).colorScheme.onPrimary, fontSize: 18),
+              fontFamily: "Gummy",
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontSize: 20),
           // Tab bar Customization
           bottom: PreferredSize(
               preferredSize: const Size.fromHeight(60),

@@ -26,8 +26,9 @@ class PopupSizeButton extends StatelessWidget {
                 enabled: false,
                 child: Text(
                   'Adjust Text Size',
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontFamily: "Zain"),
                 ),
               ),
               ...textSizes.map(
@@ -36,8 +37,8 @@ class PopupSizeButton extends StatelessWidget {
                   child: Text(
                     '${size.toInt()}',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        fontFamily: "Zain"),
                   ),
                 ),
               ),

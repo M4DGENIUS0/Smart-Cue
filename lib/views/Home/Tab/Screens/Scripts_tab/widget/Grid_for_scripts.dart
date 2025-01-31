@@ -47,8 +47,9 @@ class GridForScripts extends StatelessWidget {
                 Text(
                   title,
                   overflow: TextOverflow.ellipsis,
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontFamily: "Zain"),
                 )
               ],
             ),

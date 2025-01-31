@@ -25,8 +25,8 @@ class ConfirmDeleteButton {
       dialogType: dialogType,
       animType: AnimType.topSlide,
       dialogBackgroundColor: Theme.of(context).colorScheme.onSecondary,
-      buttonsTextStyle:
-          TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+      buttonsTextStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onPrimary, fontFamily: "Zain"),
       showCloseIcon: true,
       btnCancelColor: cancelButtonColor,
       btnOkColor: Theme.of(context).colorScheme.primary,

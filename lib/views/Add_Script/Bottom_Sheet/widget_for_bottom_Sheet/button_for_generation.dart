@@ -49,7 +49,10 @@ class ButtonForGeneration extends StatelessWidget {
                     )
                   : Text(
                       "Generate Script",
-                      style: TextStyle(color: Colors.black, fontSize: 20.sp),
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25.sp,
+                          fontFamily: "Zain"),
                     ),
             );
           },
@@ -98,10 +101,10 @@ class ButtonForGeneration extends StatelessWidget {
   }
 
   void _cancelDialog(BuildContext context) {
-    while (context.canPop()) {
-      context.pop();
-    }
-    context.go('/');
+    // while (context.canPop()) {
+    context.pop();
+
+    // context.go('/');
     context.read<GenerationBloc>().add(ClearTextField());
     context.read<GenerationBloc>().add(ResetState());
   }

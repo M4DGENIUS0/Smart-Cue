@@ -15,14 +15,17 @@ class DescriptionBox extends StatelessWidget {
         Text(
           "Description",
           style: TextStyle(
-              fontSize: 18.sp,
+              fontSize: 26.sp,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onPrimary),
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontFamily: "Zain"),
         ),
         SizedBox(
           width: 450.w,
           child: TextField(
-            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+                fontFamily: "Zain"),
             onTapOutside: (v) {
               FocusManager.instance.primaryFocus?.unfocus();
             },
@@ -43,8 +46,9 @@ class DescriptionBox extends StatelessWidget {
                         color: Theme.of(context).colorScheme.onPrimary,
                         width: 1)),
                 hintText: "Enter description",
-                hintStyle:
-                    TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
+                hintStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontFamily: "Zain")),
           ),
         )
       ],

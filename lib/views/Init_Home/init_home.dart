@@ -43,7 +43,7 @@ class _InitHomeState extends State<InitHome> {
                 ),
                 title: Text(
                   "Home",
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 18, fontFamily: "Zain"),
                 ),
                 activeColor: Theme.of(context).colorScheme.primary,
               ),
@@ -58,7 +58,7 @@ class _InitHomeState extends State<InitHome> {
                 activeColor: Theme.of(context).colorScheme.primary,
                 title: Text(
                   "Settings",
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 18, fontFamily: "Zain"),
                 ),
               ),
             ],

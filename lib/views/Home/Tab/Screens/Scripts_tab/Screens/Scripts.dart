@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:smartcue/animation/hero_transition.dart';
 import 'package:smartcue/extension/popup_card/add_script_pop_up_card.dart';
 
 import '../../../../../views.dart';

@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../../model/script_model.dart';
-import '../../../../../../repository/script repo/hive_script_repo.dart';
+import '../../../../../../controllers/script repo/hive_script_repo.dart';
 
 part 'script_tab_event.dart';
 part 'script_tab_state.dart';

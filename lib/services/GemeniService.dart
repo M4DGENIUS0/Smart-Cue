@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:smartcue/Exception/network_exception.dart';
 
-class GoogleGenerativeAI {
-  static const String _apiKey = "AIzaSyAVKoelBPpnVOn2JqHSSg6xDzQuV8rVwg4";
-  static const Duration _timeout = Duration(seconds: 30);
+String _apiKey = dotenv.env['API_KEY']!;
+const Duration _timeout = Duration(seconds: 30);
 
+class GoogleGenerativeAI {
   Future<String> generateContent(String prompt) async {
     try {
       final model = GenerativeModel(

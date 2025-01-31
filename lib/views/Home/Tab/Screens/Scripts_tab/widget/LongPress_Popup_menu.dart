@@ -40,8 +40,8 @@ class LongpressPopupMenu {
             title: Text(
               'Export',
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fontFamily: "Zain"),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -52,7 +52,8 @@ class LongpressPopupMenu {
         PopupMenuItem(
           child: ListTile(
             leading: const Icon(Icons.delete, color: Colors.red),
-            title: const Text('Delete', style: TextStyle(color: Colors.red)),
+            title: const Text('Delete',
+                style: TextStyle(color: Colors.red, fontFamily: "Zain")),
             onTap: () {
               Navigator.pop(context);
               _showDeleteConfirmation(context, script.id);
@@ -84,7 +85,9 @@ class LongpressPopupMenu {
             leading: const Icon(Icons.text_snippet),
             title: Text(
               'Plain Text',
-              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fontFamily: "Zain"),
             ),
             onTap: () async {
               Navigator.pop(context);

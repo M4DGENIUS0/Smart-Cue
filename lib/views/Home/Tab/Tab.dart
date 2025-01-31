@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Tabs extends StatelessWidget {
   const Tabs({super.key});
@@ -23,6 +24,7 @@ class Tabs extends StatelessWidget {
                   child: Text(
                 "Script",
                 overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontFamily: "Zain", fontSize: 20.sp),
               )),
             ),
             Tab(
@@ -30,6 +32,7 @@ class Tabs extends StatelessWidget {
                   child: Text(
                 "Folder",
                 overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontFamily: "Zain", fontSize: 20.sp),
               )),
             ),
             Tab(
@@ -37,6 +40,7 @@ class Tabs extends StatelessWidget {
                   child: Text(
                 "Import",
                 overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontFamily: "Zain", fontSize: 20.sp),
               )),
             )
           ]),

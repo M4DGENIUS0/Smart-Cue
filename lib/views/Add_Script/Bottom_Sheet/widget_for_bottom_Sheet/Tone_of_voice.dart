@@ -16,9 +16,10 @@ class ToneOfVoice extends StatelessWidget {
         Text(
           "Tone of Voice",
           style: TextStyle(
-              fontSize: 18.sp,
+              fontSize: 26.sp,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onPrimary),
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontFamily: "Zain"),
         ),
         SizedBox(height: 10.h),
         BlocBuilder<GenerationBloc, GenerationState>(
@@ -54,7 +55,8 @@ class ToneOfVoice extends StatelessWidget {
                                 : Theme.of(context).colorScheme.onPrimary,
                             fontWeight: isSelected
                                 ? FontWeight.bold
-                                : FontWeight.normal),
+                                : FontWeight.normal,
+                            fontFamily: "Zain"),
                       ),
                     ),
                   );

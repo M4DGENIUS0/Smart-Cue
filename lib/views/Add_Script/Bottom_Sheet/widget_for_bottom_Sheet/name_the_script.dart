@@ -19,15 +19,20 @@ class _NameTheScriptState extends State<NameTheScript> {
       children: [
         Text(
           "Name your script",
-          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontFamily: "Zain"),
         ),
         TextField(
-          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontFamily: "Zain"),
           controller: context.read<GenerationBloc>().fileName,
           decoration: InputDecoration(
               hintText: "Name of the file",
-              hintStyle:
-                  TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              hintStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fontFamily: "Zain"),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.r)),
                   borderSide: BorderSide(

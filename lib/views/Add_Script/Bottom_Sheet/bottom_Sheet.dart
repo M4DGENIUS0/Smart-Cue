@@ -18,7 +18,6 @@ class GenerateScriptBottomSheet {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return SizedBox(
-          // heightFactor: 0.9,
           height: 800.h,
           child: Padding(
             padding: EdgeInsets.all(8.0.r),
@@ -31,6 +30,9 @@ class GenerateScriptBottomSheet {
                     child: IconButton(
                       color: Theme.of(context).colorScheme.onPrimary,
                       onPressed: () {
+                        while (context.canPop()) {
+                          context.pop();
+                        }
                         context.go('/');
                       },
                       icon: Icon(

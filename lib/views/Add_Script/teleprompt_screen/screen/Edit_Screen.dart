@@ -55,7 +55,6 @@ class EditScreenState extends State<EditScreen> {
                 CustomDialogBox().showAwesomeDialog(
                     context, NameofFile(), DialogType.warning, () {
                   context.go('/Add_Script/teleprompt_screen/Edit_Screen');
-                  context.read<SmartCueBloc>().add(ClearTextEvent());
                 }, () {
                   _saveScript(context);
                   if (mounted) {
@@ -79,9 +78,9 @@ class EditScreenState extends State<EditScreen> {
                 return TextField(
                   controller: context.read<SmartCueBloc>().contentController,
                   style: TextStyle(
-                    fontSize: state.textSize,
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
+                      fontSize: state.textSize,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontFamily: "Zain"),
                   decoration: const InputDecoration(border: InputBorder.none),
                   maxLines: 9999,
                 );

@@ -42,10 +42,6 @@ class _Create_ScreenState extends State<Create_Screen> {
                       title: context.read<SmartCueBloc>().titleController.text,
                       content:
                           context.read<SmartCueBloc>().contentController.text));
-                  print(
-                      "Saving script: ${context.read<SmartCueBloc>().titleController.text}");
-                  print(
-                      "Saving script: ${context.read<SmartCueBloc>().contentController.text}");
 
                   if (mounted) {
                     context.go('/');
@@ -69,7 +65,8 @@ class _Create_ScreenState extends State<Create_Screen> {
                   controller: context.read<SmartCueBloc>().contentController,
                   style: TextStyle(
                       fontSize: state.textSize,
-                      color: Theme.of(context).colorScheme.onPrimary),
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontFamily: "Zain"),
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(border: InputBorder.none),
                   maxLines: 9999,

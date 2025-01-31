@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
@@ -17,8 +18,7 @@ import 'views/Init_Home/Cubit/build_Screen_Cubit.dart';
 GetIt getIt = GetIt.instance;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // debugPaintSizeEnabled = true;
-  // Initialize Hive
+  await dotenv.load(fileName: ".env");
   await HiveService.initHive();
   runApp(
     MyApp(),
@@ -59,12 +59,10 @@ class MyApp extends StatelessWidget {
             minTextAdapt: true,
             splitScreenMode: true,
             child: MaterialApp.router(
-              // backButtonDispatcher: RootBackButtonDispatcher(),
               routerConfig: appRouting.router,
               title: 'Smart Cue',
               debugShowCheckedModeBanner: false,
               theme: Theme,
-              // home: SmartCueScreen(),
             ),
           );
         },

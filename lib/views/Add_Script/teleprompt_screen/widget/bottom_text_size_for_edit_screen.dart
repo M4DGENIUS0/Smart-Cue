@@ -16,7 +16,7 @@ class BottomTextSizeForEditScreen extends StatelessWidget {
         builder: (context, state) {
           final bloc = context.read<PlaybackBloc>();
           return Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(width: 10),
               Icon(
