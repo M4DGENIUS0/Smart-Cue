@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../../../model/script_model.dart';
 import '../../../../controllers/prompt/script_generation.dart';
-import '../../../../controllers/script repo/hive_script_repo.dart';
+import '../../../../controllers/script_repo/hive_script_repo.dart';
 import '../../../../utils/Status/GenerationStatus.dart';
 
 part 'generation_event.dart';

@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../../model/script_model.dart';
-import '../../../../../controllers/script repo/hive_script_repo.dart';
+import '../../../../../controllers/script_repo/hive_script_repo.dart';
 part 'smart_cue_event.dart';
 part 'smart_cue_state.dart';
 
